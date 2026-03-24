@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Demo — DDFAB Dealer Websites</title>
+  <meta name="description" content="Preview three professional website templates built for welding and fabrication shops.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF6600;
+      --orange-light: #FF8533;
+      --bg: #000000;
+      --bg-card: #1A1A1A;
+      --border: #2A2A2A;
+      --text: #FFFFFF;
+      --text-muted: #CCCCCC;
+      --text-dim: #AAAAAA;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Play', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+
+    .topbar {
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .topbar-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .topbar-brand img { height: 22px; width: auto; }
+    .topbar-badge {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-dim);
+      background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+      border-radius: 3px; padding: 3px 8px;
+    }
+
+    .switcher {
+      flex-shrink: 0;
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--border);
+      background: #0A0A0A;
+      overflow-x: auto;
+    }
+    .switcher-tab {
+      flex: 1; min-width: 0;
+      padding: 14px 20px;
+      background: none; border: none; border-bottom: 3px solid transparent;
+      color: var(--text-dim); cursor: pointer;
+      font-family: 'Play', sans-serif; font-size: 14px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      transition: all 200ms; white-space: nowrap;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+    }
+    .switcher-tab:hover { color: var(--text-muted); background: rgba(255,255,255,0.02); }
+    .switcher-tab.active {
+      color: var(--orange); border-bottom-color: var(--orange);
+      background: rgba(255,102,0,0.04);
+    }
+    .switcher-tab-sub {
+      font-size: 11px; font-weight: 400; text-transform: none;
+      letter-spacing: 0; color: var(--text-dim); opacity: 0.7;
+    }
+    .switcher-tab.active .switcher-tab-sub { color: var(--orange); opacity: 0.8; }
+    .switcher-tab .pop-badge {
+      display: inline-block; font-size: 9px; font-weight: 700;
+      background: var(--orange); color: #fff; border-radius: 2px;
+      padding: 1px 5px; margin-left: 6px; vertical-align: middle;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    .preview-area {
+      flex: 1; position: relative;
+      overflow: hidden; background: #111;
+    }
+    .preview-frame {
+      display: none;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .preview-frame.active { display: block; }
+
+    .preview-actions {
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; padding: 12px 24px;
+      background: var(--bg); border-top: 1px solid var(--border);
+    }
+    .view-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Play', sans-serif; font-size: 14px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--orange); text-decoration: none;
+      padding: 10px 24px; border-radius: 4px;
+      background: rgba(255,102,0,0.08); border: 1px solid rgba(255,102,0,0.2);
+      transition: all 200ms;
+    }
+    .view-link:hover {
+      background: rgba(255,102,0,0.15); border-color: rgba(255,102,0,0.4);
+    }
+    .view-link svg { width: 16px; height: 16px; }
+    .back-link {
+      font-family: 'Play', sans-serif; font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--text-dim); text-decoration: none;
+      padding: 10px 20px; border-radius: 4px;
+      border: 1px solid var(--border); transition: all 200ms;
+    }
+    .back-link:hover { color: var(--text); border-color: var(--text-dim); }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 12px 16px; }
+      .topbar-badge { display: none; }
+      .switcher-tab { padding: 12px 12px; font-size: 12px; }
+      .switcher-tab-sub { display: none; }
+      .preview-actions { flex-direction: column; gap: 8px; padding: 10px 16px; }
+      .view-link, .back-link { width: 100%; justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="/" class="topbar-brand">
+      <img src="images/Double Diamond Fabrication Logo.png" alt="DDFAB">
+    </a>
+    <span class="topbar-badge">Template Preview</span>
+  </div>
+
+  <div class="switcher" role="tablist">
+    <button class="switcher-tab active" role="tab" aria-selected="true" data-tmpl="a">
+      Template A &mdash; Dark &amp; Sleek
+      <span class="switcher-tab-sub">Bold dark backgrounds, modern edge</span>
+    </button>
+    <button class="switcher-tab" role="tab" aria-selected="false" data-tmpl="b">
+      Template B &mdash; Clean Industrial
+      <span class="switcher-tab-sub">Light backgrounds, editorial layout</span>
+    </button>
+    <button class="switcher-tab" role="tab" aria-selected="false" data-tmpl="c">
+      Template C &mdash; Workshop Grit <span class="pop-badge">Popular</span>
+      <span class="switcher-tab-sub">Textured darks, bold typography</span>
+    </button>
+  </div>
+
+  <div class="preview-area">
+    <iframe class="preview-frame active" data-tmpl="a" src="https://ddfab-website-builder.vercel.app/template-a.html" title="Dark & Sleek template"></iframe>
+    <iframe class="preview-frame" data-tmpl="b" src="about:blank" title="Clean Industrial template"></iframe>
+    <iframe class="preview-frame" data-tmpl="c" src="about:blank" title="Workshop Grit template"></iframe>
+  </div>
+
+  <div class="preview-actions">
+    <a id="view-link" href="https://ddfab-website-builder.vercel.app/template-a.html" target="_blank" rel="noopener" class="view-link">
+      View Full Site
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+    <a href="/" class="back-link">Get Started</a>
+  </div>
+
+  <script>
+    (function() {
+      var tabs = document.querySelectorAll('.switcher-tab');
+      var frames = document.querySelectorAll('.preview-frame');
+      var viewLink = document.getElementById('view-link');
+      var urls = {
+        a: 'https://ddfab-website-builder.vercel.app/template-a.html',
+        b: 'https://ddfab-website-builder.vercel.app/template-b.html',
+        c: 'https://ddfab-website-builder.vercel.app/template-c.html'
+      };
+
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var id = tab.getAttribute('data-tmpl');
+          tabs.forEach(function(t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+
+          frames.forEach(function(f) {
+            f.classList.remove('active');
+            if (f.getAttribute('data-tmpl') === id) {
+              f.classList.add('active');
+              if (f.src === 'about:blank') f.src = urls[id];
+            }
+          });
+
+          if (viewLink) viewLink.href = urls[id];
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
