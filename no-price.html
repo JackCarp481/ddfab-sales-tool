@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get a Professional Dealer Website — DDFAB</title>
+  <meta name="description" content="Professional websites built specifically for welding and fabrication shops. Ready in days, not months.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700;800;900&family=Oswald:wght@400;500;600;700&family=Play:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF6600;
+      --orange-light: #FF8533;
+      --orange-glow: rgba(255, 102, 0, 0.4);
+      --bg: #000000;
+      --bg-raised: #0D0D0D;
+      --bg-card: #1A1A1A;
+      --bg-input: #111111;
+      --border: #2A2A2A;
+      --border-light: #333333;
+      --text: #FFFFFF;
+      --text-muted: #CCCCCC;
+      --text-dim: #AAAAAA;
+      --text-faint: #666666;
+      --max-w: 1140px;
+      --radius: 4px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Play', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+    .section-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--orange);
+      border: 1px solid rgba(255,102,0,0.3);
+      padding: 5px 14px; border-radius: 2px; margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: -0.01em; line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px; color: var(--text-muted);
+      line-height: 1.7; max-width: 600px;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px;
+      font-family: 'Play', sans-serif; font-size: 15px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border: none; border-radius: var(--radius);
+      cursor: pointer; transition: all 250ms ease;
+      text-decoration: none;
+    }
+    .btn-orange {
+      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(255,102,0,0.25);
+    }
+    .btn-orange:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--orange-glow);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.25);
+    }
+    .btn-ghost:hover {
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── NAV ──────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; padding: 0 24px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--orange);
+    }
+    .nav-brand svg { flex-shrink: 0; }
+    .nav-cta { padding: 10px 24px; font-size: 13px; }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 120px 0 100px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.72) 40%, rgba(0,0,0,0.92) 100%),
+        url('images/Landing_Hero.JPG') center/cover no-repeat;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(255,102,0,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 80px;
+      background: var(--bg-raised);
+      clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 100%);
+    }
+    .hero-content { position: relative; z-index: 1; text-align: center; max-width: 820px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--orange);
+      border: 1px solid rgba(255,102,0,0.35); padding: 6px 18px;
+      border-radius: 2px; margin-bottom: 28px;
+    }
+    .hero-title {
+      font-size: clamp(32px, 5.5vw, 64px);
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: -0.01em; line-height: 1.08;
+      margin-bottom: 24px;
+    }
+    .hero-title span { color: var(--orange); }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text-muted); line-height: 1.7;
+      margin-bottom: 40px; max-width: 620px; margin-left: auto; margin-right: auto;
+    }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── PROBLEM ──────────────────────────────────── */
+    .problem {
+      padding: 80px 0 90px;
+      background: var(--bg-raised);
+    }
+    .problem-text {
+      max-width: 760px; margin: 0 auto; text-align: center;
+      font-size: clamp(18px, 2.5vw, 22px);
+      color: var(--text-muted); line-height: 1.8;
+    }
+    .problem-text strong { color: var(--text); font-weight: 700; }
+
+    /* ── FEATURES ─────────────────────────────────── */
+    .features { padding: 100px 0; background: var(--bg); }
+    .features-header { text-align: center; margin-bottom: 60px; }
+    .features-header .section-sub { margin-left: auto; margin-right: auto; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .feat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: border-color 300ms, transform 300ms;
+    }
+    .feat-card:hover {
+      border-color: rgba(255,102,0,0.4);
+      transform: translateY(-4px);
+    }
+    .feat-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,102,0,0.1);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+    }
+    .feat-icon svg { width: 22px; height: 22px; stroke: var(--orange); fill: none; stroke-width: 1.5; }
+    .feat-title {
+      font-size: 15px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .feat-desc { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+
+    /* ── TEMPLATE SHOWCASE ────────────────────────── */
+    .templates { padding: 100px 0; background: var(--bg-raised); }
+    .templates-header { text-align: center; margin-bottom: 50px; }
+    .templates-header .section-sub { margin-left: auto; margin-right: auto; }
+
+    .tmpl-tabs {
+      display: flex; gap: 16px; margin-bottom: 32px;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .tmpl-tab {
+      flex: 0 1 260px;
+      background: var(--bg-card); border: 2px solid var(--border);
+      border-radius: var(--radius); padding: 20px;
+      cursor: pointer; transition: all 250ms; position: relative;
+      text-align: left;
+    }
+    .tmpl-tab:hover { border-color: rgba(255,102,0,0.3); }
+    .tmpl-tab.active { border-color: var(--orange); background: rgba(255,102,0,0.04); }
+    .tmpl-tab-name {
+      font-size: 15px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 4px;
+    }
+    .tmpl-tab-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+    .tmpl-badge-popular {
+      position: absolute; top: -10px; right: 12px;
+      background: var(--orange); color: #fff;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    .tmpl-preview {
+      max-width: 900px; margin: 0 auto;
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      background: var(--bg-card);
+    }
+    .tmpl-browser-bar {
+      height: 40px; background: #0A0A0A;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 16px; gap: 8px;
+    }
+    .tmpl-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .tmpl-url {
+      flex: 1; background: rgba(255,255,255,0.05);
+      height: 22px; border-radius: 4px; margin: 0 12px;
+      display: flex; align-items: center; padding: 0 12px;
+      font-size: 11px; color: var(--text-faint); font-family: monospace;
+    }
+    .tmpl-viewport { position: relative; min-height: 480px; }
+    .tmpl-slide {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; text-align: center;
+      padding: 40px;
+      opacity: 0; transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .tmpl-slide.active { opacity: 1; pointer-events: auto; position: relative; }
+    .tmpl-slide-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--orange);
+      border: 1px solid rgba(255,102,0,0.3); padding: 4px 12px;
+      border-radius: 2px;
+    }
+    .tmpl-slide-name {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700; text-transform: uppercase; line-height: 1.1;
+    }
+    .tmpl-slide-vibe {
+      font-size: 15px; color: var(--text-dim);
+      max-width: 400px; line-height: 1.6;
+    }
+    /* ── TEMPLATE IFRAME PREVIEWS ──────────────────── */
+    .iframe-wrap {
+      position: relative;
+      width: 100%; max-width: 760px;
+      overflow: hidden;
+      border-radius: 6px;
+      margin-top: 12px;
+      background: #111;
+    }
+    .iframe-wrap iframe {
+      width: 1440px;
+      height: 900px;
+      border: none;
+      transform-origin: top left;
+      pointer-events: none;
+      display: block;
+    }
+    .tmpl-view-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 16px; font-size: 14px; font-weight: 700;
+      color: var(--orange); text-transform: uppercase;
+      letter-spacing: 0.06em; text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .tmpl-view-link:hover { gap: 12px; }
+
+    /* ── HOW IT WORKS ─────────────────────────────── */
+    .how { padding: 100px 0; background: var(--bg); }
+    .how-header { text-align: center; margin-bottom: 60px; }
+    .how-header .section-sub { margin-left: auto; margin-right: auto; }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 32px; position: relative;
+    }
+    .how-steps::before {
+      content: ''; position: absolute;
+      top: 24px; left: calc(12.5% + 24px); right: calc(12.5% + 24px);
+      height: 2px;
+      background: linear-gradient(to right, var(--orange), rgba(255,102,0,0.2));
+    }
+    .how-step { text-align: center; }
+    .how-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      color: #fff; font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px; position: relative; z-index: 1;
+    }
+    .how-label {
+      font-size: 16px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.03em; margin-bottom: 10px;
+    }
+    .how-desc { font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+
+    /* ── FORM CTA ─────────────────────────────────── */
+    .form-cta { padding: 100px 0; background: var(--bg-raised); }
+    .form-cta-header { text-align: center; margin-bottom: 50px; }
+    .form-cta-header .section-sub { margin-left: auto; margin-right: auto; }
+    .form-wrap {
+      max-width: 640px; margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 40px;
+    }
+    .form-row { margin-bottom: 20px; }
+    .form-row label {
+      display: block; font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 6px; color: var(--text-muted);
+    }
+    .form-row input[type="text"],
+    .form-row input[type="email"],
+    .form-row input[type="tel"],
+    .form-row select,
+    .form-row textarea {
+      width: 100%; padding: 14px 16px;
+      background: var(--bg-input); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text);
+      font-family: 'Play', sans-serif; font-size: 15px;
+      transition: border-color 200ms;
+    }
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      outline: none; border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
+    }
+    .form-row textarea { min-height: 100px; resize: vertical; }
+    .form-row select { appearance: none; cursor: pointer; }
+
+    .radio-group { display: flex; gap: 12px; flex-wrap: wrap; }
+    .radio-opt {
+      flex: 1; min-width: 120px;
+      position: relative;
+    }
+    .radio-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .radio-opt label {
+      display: block; text-align: center;
+      padding: 12px 16px; background: var(--bg-input);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      cursor: pointer; font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      transition: all 200ms; color: var(--text-dim);
+    }
+    .radio-opt input:checked + label {
+      border-color: var(--orange); color: var(--orange);
+      background: rgba(255,102,0,0.06);
+    }
+    .radio-opt label:hover { border-color: rgba(255,102,0,0.3); }
+    .radio-opt input:focus-visible + label {
+      box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
+    }
+
+    .form-submit { margin-top: 28px; }
+    .form-submit .btn { width: 100%; justify-content: center; font-size: 17px; padding: 18px 36px; }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    .footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 40px 24px; text-align: center;
+    }
+    .footer-brand {
+      display: flex; align-items: center; gap: 10px;
+      justify-content: center; margin-bottom: 12px;
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--orange); font-size: 14px;
+    }
+    .footer-brand svg { flex-shrink: 0; }
+    .footer-sub { font-size: 13px; color: var(--text-dim); margin-bottom: 6px; }
+    .footer-sub a { color: var(--orange); }
+    .footer-copy { font-size: 12px; color: var(--text-faint); }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 900px) {
+      .how-steps { grid-template-columns: repeat(2, 1fr); }
+      .how-steps::before { display: none; }
+      .tmpl-tab { flex: 1 1 100%; }
+      .tmpl-viewport { min-height: 400px; }
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 100px 0 80px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .features-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr; }
+      .tmpl-tabs { flex-direction: column; }
+      .radio-group { flex-direction: column; }
+      .radio-opt { min-width: 100%; }
+      .form-wrap { padding: 28px 20px; }
+      .nav-brand span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="https://ddfab.co" class="nav-brand">
+        <img src="images/Double Diamond Fabrication Logo.png" alt="DDFAB" style="height:28px;width:auto;">
+      </a>
+      <a href="#form" class="btn btn-orange nav-cta">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-content">
+        <div class="hero-badge fade-up">Built for DDFAB Builder Dealers</div>
+        <h1 class="hero-title fade-up">
+          Your Shop Deserves a Website That <span>Works as Hard as You Do</span>
+        </h1>
+        <p class="hero-sub fade-up">
+          Professional websites built specifically for welding and fabrication shops. Ready in days, not months.
+        </p>
+        <div class="hero-ctas fade-up">
+          <a href="#templates" class="btn btn-orange">
+            See the Templates
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 14l-7 7-7-7M19 3l-7 7-7-7"/></svg>
+          </a>
+          <a href="#form" class="btn btn-ghost">Let's Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="wrap">
+      <p class="problem-text fade-up">
+        Most welding shops don't have a website. Or they have one that was built in 2014 and looks like it.
+        <strong>Your customers are searching for fabrication shops online right now</strong> — and finding your competitors instead. We built a better way.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="features" id="features">
+    <div class="wrap">
+      <div class="features-header fade-up">
+        <div class="section-tag">What You Get</div>
+        <h2 class="section-title">Everything Your Shop Needs Online</h2>
+        <p class="section-sub">No web designers. No monthly agencies. No WordPress headaches. We handle everything.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feat-card fade-up">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="feat-title">Custom-Branded Design</div>
+          <p class="feat-desc">Your logo, your colors, your identity. Not a cookie-cutter template.</p>
+        </div>
+
+        <div class="feat-card fade-up">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="feat-title">Mobile-Optimized</div>
+          <p class="feat-desc">Over 60% of your customers are searching on their phone. Your site looks perfect everywhere.</p>
+        </div>
+
+        <div class="feat-card fade-up">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="feat-title">Service Showcase</div>
+          <p class="feat-desc">Highlight every service you offer with descriptions and imagery. Let customers know what you do.</p>
+        </div>
+
+        <div class="feat-card fade-up">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <div class="feat-title">Project Gallery</div>
+          <p class="feat-desc">Show off your best builds. Let your work sell itself with a filterable photo gallery.</p>
+        </div>
+
+        <div class="feat-card fade-up">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="feat-title">Contact Form & Click-to-Call</div>
+          <p class="feat-desc">Make it dead simple for customers to reach you. One tap to call, one form to fill out.</p>
+        </div>
+
+        <div class="feat-card fade-up">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="feat-title">Google Maps Integration</div>
+          <p class="feat-desc">Customers can find your shop instantly and get directions in one tap.</p>
+        </div>
+
+        <div class="feat-card fade-up">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="feat-title">DDFAB Dealer Badge</div>
+          <p class="feat-desc">Show customers you're part of a trusted national network of authorized builders.</p>
+        </div>
+
+        <div class="feat-card fade-up">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="feat-title">Fast & Secure</div>
+          <p class="feat-desc">Built on modern infrastructure. No slow WordPress sites that take 10 seconds to load.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATE SHOWCASE -->
+  <section class="templates" id="templates">
+    <div class="wrap">
+      <div class="templates-header fade-up">
+        <div class="section-tag">Pick Your Style</div>
+        <h2 class="section-title">Three Designs. Same Powerful Features.</h2>
+        <p class="section-sub">Choose the one that fits your shop's personality. Every template is built from the ground up for metal shops.</p>
+      </div>
+
+      <div class="tmpl-tabs" role="tablist">
+        <button class="tmpl-tab active" role="tab" aria-selected="true" data-tmpl="a">
+          <div class="tmpl-tab-name">Dark & Sleek</div>
+          <div class="tmpl-tab-desc">Bold dark backgrounds, card-based layouts, and a modern edge.</div>
+        </button>
+        <button class="tmpl-tab" role="tab" aria-selected="false" data-tmpl="b">
+          <div class="tmpl-tab-name">Clean Industrial</div>
+          <div class="tmpl-tab-desc">Light backgrounds with industrial details. Editorial layout that lets your work pop.</div>
+        </button>
+        <button class="tmpl-tab" role="tab" aria-selected="false" data-tmpl="c">
+          <div class="tmpl-badge-popular">Most Popular</div>
+          <div class="tmpl-tab-name">Workshop Grit</div>
+          <div class="tmpl-tab-desc">Textured warm darks, bold typography, and raw personality.</div>
+        </button>
+      </div>
+
+      <div class="tmpl-preview fade-up">
+        <div class="tmpl-browser-bar">
+          <div class="tmpl-dot" style="background:#ff5f56"></div>
+          <div class="tmpl-dot" style="background:#ffbd2e"></div>
+          <div class="tmpl-dot" style="background:#27c93f"></div>
+          <div class="tmpl-url" id="tmpl-url-text">yourshop.com</div>
+        </div>
+        <div class="tmpl-viewport">
+
+          <div class="tmpl-slide active" data-tmpl="a" role="tabpanel">
+            <div class="tmpl-slide-label">Template A</div>
+            <div class="tmpl-slide-name">Dark & Sleek</div>
+            <div class="tmpl-slide-vibe">Bold dark backgrounds, card-based layouts, and a modern edge. The safe bet that works for every shop.</div>
+            <div class="iframe-wrap">
+              <iframe src="https://ddfab-website-builder.vercel.app/template-a.html" loading="lazy" title="Dark Industrial template preview"></iframe>
+            </div>
+            <a href="https://ddfab-website-builder.vercel.app/template-a.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
+          </div>
+
+          <div class="tmpl-slide" data-tmpl="b" role="tabpanel">
+            <div class="tmpl-slide-label">Template B</div>
+            <div class="tmpl-slide-name">Clean Industrial</div>
+            <div class="tmpl-slide-vibe">Light backgrounds with industrial details. Editorial layout that lets your work photography pop.</div>
+            <div class="iframe-wrap">
+              <iframe src="https://ddfab-website-builder.vercel.app/template-b.html" loading="lazy" title="Clean Industrial template preview"></iframe>
+            </div>
+            <a href="https://ddfab-website-builder.vercel.app/template-b.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
+          </div>
+
+          <div class="tmpl-slide" data-tmpl="c" role="tabpanel">
+            <div class="tmpl-slide-label">Template C</div>
+            <div class="tmpl-slide-name">Workshop Grit</div>
+            <div class="tmpl-slide-vibe">Textured warm darks, bold condensed typography, and raw personality. Feels like it belongs to a welder, not a designer.</div>
+            <div class="iframe-wrap">
+              <iframe src="https://ddfab-website-builder.vercel.app/template-c.html" loading="lazy" title="Workshop Grit template preview"></iframe>
+            </div>
+            <a href="https://ddfab-website-builder.vercel.app/template-c.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="how-header fade-up">
+        <div class="section-tag">The Process</div>
+        <h2 class="section-title">Live in Days, Not Months</h2>
+        <p class="section-sub">Four simple steps from form to finished website.</p>
+      </div>
+      <div class="how-steps">
+        <div class="how-step fade-up">
+          <div class="how-num">1</div>
+          <div class="how-label">Tell Us About Your Shop</div>
+          <p class="how-desc">Fill out a quick form with your business info, logo, and photos. Takes about 10 minutes.</p>
+        </div>
+        <div class="how-step fade-up">
+          <div class="how-num">2</div>
+          <div class="how-label">Pick Your Template</div>
+          <p class="how-desc">Choose from three professional design styles built specifically for metal shops.</p>
+        </div>
+        <div class="how-step fade-up">
+          <div class="how-num">3</div>
+          <div class="how-label">We Build It</div>
+          <p class="how-desc">Your custom website is built and ready for review within days. You'll get a preview link.</p>
+        </div>
+        <div class="how-step fade-up">
+          <div class="how-num">4</div>
+          <div class="how-label">Go Live</div>
+          <p class="how-desc">We connect your domain and launch. You're online and customers can find you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-cta" id="form">
+    <div class="wrap">
+      <div class="form-cta-header fade-up">
+        <div class="section-tag">Let's Go</div>
+        <h2 class="section-title">Ready to Put Your Shop Online?</h2>
+        <p class="section-sub">Fill out the form below and we'll be in touch within 24 hours to get started.</p>
+      </div>
+      <div class="form-wrap fade-up">
+        <form action="https://formsubmit.co/jackson@jacksoncarpenter.us" method="POST">
+          <input type="hidden" name="_subject" value="New Dealer Website Inquiry">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="thanks.html">
+          <input type="hidden" name="_template" value="box">
+
+          <div class="form-row">
+            <label for="shop">Shop / Business Name</label>
+            <input type="text" id="shop" name="shop_name" required placeholder="e.g. Iron Ridge Welding">
+          </div>
+
+          <div class="form-row">
+            <label for="contact">Contact Name</label>
+            <input type="text" id="contact" name="contact_name" required placeholder="Your full name">
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="you@yourshop.com">
+          </div>
+
+          <div class="form-row">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(555) 555-5555">
+          </div>
+
+          <div class="form-row">
+            <label>Which Template Do You Like Best?</label>
+            <div class="radio-group">
+              <div class="radio-opt">
+                <input type="radio" id="t-dark" name="template_pref" value="Dark & Sleek">
+                <label for="t-dark">Dark & Sleek</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" id="t-clean" name="template_pref" value="Clean Industrial">
+                <label for="t-clean">Clean Industrial</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" id="t-grit" name="template_pref" value="Workshop Grit">
+                <label for="t-grit">Workshop Grit</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" id="t-unsure" name="template_pref" value="Not Sure Yet" checked>
+                <label for="t-unsure">Not Sure Yet</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label>Do You Have a Domain Name?</label>
+            <div class="radio-group">
+              <div class="radio-opt">
+                <input type="radio" id="d-yes" name="has_domain" value="Yes">
+                <label for="d-yes">Yes</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" id="d-no" name="has_domain" value="No">
+                <label for="d-no">No</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" id="d-unsure" name="has_domain" value="Not Sure">
+                <label for="d-unsure">Not Sure</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="notes">Anything Else We Should Know?</label>
+            <textarea id="notes" name="notes" placeholder="Optional — tell us anything about your shop, timeline, or questions you have."></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn-orange">
+              Let's Get Started
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="images/Double Diamond Fabrication Logo.png" alt="DDFAB" style="height:24px;width:auto;">
+    </div>
+    <p class="footer-sub">Powered by Double Diamond Fabrication &middot; <a href="tel:5416788445">541-678-8445</a> &middot; <a href="https://ddfab.co">ddfab.co</a></p>
+    <p class="footer-copy">&copy; 2026 DDFAB. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function() {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.fade-up').forEach(function(el) { io.observe(el); });
+
+      var tabs = document.querySelectorAll('.tmpl-tab');
+      var slides = document.querySelectorAll('.tmpl-slide');
+      var urlText = document.getElementById('tmpl-url-text');
+      var urls = { a: 'yourshop.com', b: 'yourshop.com', c: 'yourshop.com' };
+
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var id = tab.getAttribute('data-tmpl');
+          tabs.forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          slides.forEach(function(s) { s.classList.remove('active'); });
+          var target = document.querySelector('.tmpl-slide[data-tmpl="' + id + '"]');
+          if (target) target.classList.add('active');
+          if (urlText) urlText.textContent = urls[id] || 'yourshop.com';
+          resizeIframes();
+        });
+      });
+
+      function resizeIframes() {
+        document.querySelectorAll('.iframe-wrap').forEach(function(wrap) {
+          var iframe = wrap.querySelector('iframe');
+          if (!iframe) return;
+          var wrapWidth = wrap.offsetWidth;
+          if (wrapWidth < 1) return;
+          var scale = wrapWidth / 1440;
+          iframe.style.transform = 'scale(' + scale + ')';
+          wrap.style.height = Math.round(900 * scale) + 'px';
+        });
+      }
+      resizeIframes();
+      window.addEventListener('resize', resizeIframes);
+    })();
+  </script>
+</body>
+</html>

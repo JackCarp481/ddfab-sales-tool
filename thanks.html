@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We Got Your Info — DDFAB</title>
+  <meta name="description" content="Thanks for your interest in a DDFAB dealer website. We'll be in touch within 24 hours.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF6600;
+      --orange-light: #FF8533;
+      --bg: #000000;
+      --bg-card: #1A1A1A;
+      --border: #2A2A2A;
+      --text: #FFFFFF;
+      --text-muted: #CCCCCC;
+      --text-dim: #AAAAAA;
+      --text-faint: #666666;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Play', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 24px; text-align: center;
+    }
+    .card {
+      max-width: 560px; width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 48px 40px;
+    }
+    .icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(255,102,0,0.12);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .icon svg { width: 32px; height: 32px; stroke: var(--orange); fill: none; stroke-width: 2; }
+    h1 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700; text-transform: uppercase;
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    .msg {
+      font-size: 17px; color: var(--text-muted);
+      line-height: 1.7; margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px;
+      font-family: 'Play', sans-serif; font-size: 15px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border: none; border-radius: 4px;
+      cursor: pointer; transition: all 250ms; text-decoration: none;
+      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      color: #fff; box-shadow: 0 4px 16px rgba(255,102,0,0.25);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255,102,0,0.4);
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 13px; color: var(--text-faint);
+    }
+    .footer a { color: var(--orange); text-decoration: none; }
+    .brand {
+      display: flex; align-items: center; gap: 8px;
+      justify-content: center; margin-bottom: 32px;
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--orange); font-size: 14px;
+    }
+    @media (max-width: 600px) {
+      .card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+        <path d="M20 4L36 20L20 36L4 20Z" stroke="#FF6600" stroke-width="2"/>
+        <path d="M20 12L28 20L20 28L12 20Z" stroke="#FF6600" stroke-width="2"/>
+      </svg>
+      DDFAB
+    </div>
+    <div class="icon">
+      <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+    </div>
+    <h1>We Got Your Info</h1>
+    <p class="msg">
+      Thanks for your interest in a DDFAB dealer website. Expect to hear from us within <strong>24 hours</strong> to get the ball rolling.
+    </p>
+    <a href="https://ddfab.co" class="btn">
+      Back to DDFAB.co
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="footer">
+    <p>Powered by Double Diamond Fabrication &middot; <a href="tel:5416788445">541-678-8445</a> &middot; <a href="https://ddfab.co">ddfab.co</a></p>
+  </div>
+
+</body>
+</html>
