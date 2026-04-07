@@ -18,9 +18,9 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700;800;900&family=Oswald:wght@400;500;600;700&family=Play:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cta: #0D9488;
-      --cta-light: #14B8A6;
-      --cta-glow: rgba(13, 148, 136, 0.45);
+      --cta: #FF6600;
+      --cta-light: #FF8533;
+      --cta-glow: rgba(255, 102, 0, 0.45);
       --bg: #000000;
       --bg-raised: #0D0D0D;
       --bg-card: #1A1A1A;
@@ -53,7 +53,7 @@
       display: inline-block;
       font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--cta);
-      border: 1px solid rgba(13,148,136,0.3);
+      border: 1px solid rgba(255,102,0,0.3);
       padding: 5px 14px; border-radius: 2px; margin-bottom: 16px;
     }
     .section-title {
@@ -79,7 +79,7 @@
     .btn-cta {
       background: linear-gradient(135deg, var(--cta), var(--cta-light));
       color: #fff;
-      box-shadow: 0 4px 16px rgba(13,148,136,0.25);
+      box-shadow: 0 4px 16px rgba(255,102,0,0.25);
     }
     .btn-cta:hover {
       transform: translateY(-2px);
@@ -112,12 +112,17 @@
       display: flex; align-items: center; justify-content: space-between;
       height: 64px; padding: 0 24px;
     }
+    .nav-logos {
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap;
+    }
     .nav-brand {
       display: flex; align-items: center; gap: 10px;
       font-size: 15px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--text);
+      letter-spacing: 0.08em; color: var(--cta);
     }
     .nav-brand svg { flex-shrink: 0; }
+    .nav-ironhorse { height: 30px; width: auto; display: block; }
     .nav-cta { padding: 10px 24px; font-size: 13px; }
 
     /* ── HERO ─────────────────────────────────────── */
@@ -130,7 +135,7 @@
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(13,148,136,0.06) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 60% 40%, rgba(255,102,0,0.06) 0%, transparent 65%);
       pointer-events: none;
     }
     .hero::after {
@@ -144,7 +149,7 @@
       display: inline-block;
       font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--cta);
-      border: 1px solid rgba(13,148,136,0.35); padding: 6px 18px;
+      border: 1px solid rgba(255,102,0,0.35); padding: 6px 18px;
       border-radius: 2px; margin-bottom: 28px;
     }
     .hero-title {
@@ -190,12 +195,12 @@
       transition: border-color 300ms, transform 300ms;
     }
     .feat-card:hover {
-      border-color: rgba(13,148,136,0.4);
+      border-color: rgba(255,102,0,0.4);
       transform: translateY(-4px);
     }
     .feat-icon {
       width: 44px; height: 44px;
-      background: rgba(13,148,136,0.1);
+      background: rgba(255,102,0,0.1);
       border-radius: var(--radius);
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 18px;
@@ -224,8 +229,8 @@
       cursor: pointer; transition: all 250ms; position: relative;
       text-align: left;
     }
-    .tmpl-tab:hover { border-color: rgba(13,148,136,0.3); }
-    .tmpl-tab.active { border-color: var(--cta); background: rgba(13,148,136,0.04); }
+    .tmpl-tab:hover { border-color: rgba(255,102,0,0.3); }
+    .tmpl-tab.active { border-color: var(--cta); background: rgba(255,102,0,0.04); }
     .tmpl-tab-name {
       font-size: 15px; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.04em; margin-bottom: 4px;
@@ -271,7 +276,7 @@
     .tmpl-slide-label {
       font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--cta);
-      border: 1px solid rgba(13,148,136,0.3); padding: 4px 12px;
+      border: 1px solid rgba(255,102,0,0.3); padding: 4px 12px;
       border-radius: 2px;
     }
     .tmpl-slide-name {
@@ -320,7 +325,7 @@
       content: ''; position: absolute;
       top: 24px; left: calc(12.5% + 24px); right: calc(12.5% + 24px);
       height: 2px;
-      background: linear-gradient(to right, var(--cta), rgba(13,148,136,0.2));
+      background: linear-gradient(to right, var(--cta), rgba(255,102,0,0.2));
     }
     .how-step { text-align: center; }
     .how-num {
@@ -367,7 +372,7 @@
     .form-row select:focus,
     .form-row textarea:focus {
       outline: none; border-color: var(--cta);
-      box-shadow: 0 0 0 3px rgba(13,148,136,0.15);
+      box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
     }
     .form-row textarea { min-height: 100px; resize: vertical; }
     .form-row select { appearance: none; cursor: pointer; }
@@ -388,11 +393,11 @@
     }
     .radio-opt input:checked + label {
       border-color: var(--cta); color: var(--cta);
-      background: rgba(13,148,136,0.06);
+      background: rgba(255,102,0,0.06);
     }
-    .radio-opt label:hover { border-color: rgba(13,148,136,0.3); }
+    .radio-opt label:hover { border-color: rgba(255,102,0,0.3); }
     .radio-opt input:focus-visible + label {
-      box-shadow: 0 0 0 3px rgba(13,148,136,0.15);
+      box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
     }
 
     .form-submit { margin-top: 28px; }
@@ -403,13 +408,12 @@
       background: var(--bg); border-top: 1px solid var(--border);
       padding: 40px 24px; text-align: center;
     }
-    .footer-brand {
-      display: flex; align-items: center; gap: 10px;
-      justify-content: center; margin-bottom: 12px;
-      font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--text-muted); font-size: 14px;
+    .footer-logos {
+      display: flex; align-items: center; justify-content: center;
+      gap: 28px; flex-wrap: wrap; margin-bottom: 16px;
     }
-    .footer-brand svg { flex-shrink: 0; }
+    .footer-logos img { height: 28px; width: auto; }
+    .footer-logos .footer-logo-ironhorse { height: 32px; }
     .footer-sub { font-size: 13px; color: var(--text-dim); margin-bottom: 6px; }
     .footer-sub a { color: var(--cta); }
     .footer-copy { font-size: 12px; color: var(--text-faint); }
@@ -439,9 +443,12 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="https://ddfab.co" class="nav-brand">
-        <img src="images/Double Diamond Fabrication Logo.png" alt="DDFAB" style="height:28px;width:auto;">
-      </a>
+      <div class="nav-logos">
+        <a href="https://ddfab.co" class="nav-brand">
+          <img src="images/Double Diamond Fabrication Logo.png" alt="Double Diamond Fabrication" style="height:28px;width:auto;">
+        </a>
+        <img src="images/Logo.png" alt="Iron Horse" class="nav-ironhorse">
+      </div>
       <a href="#form" class="btn btn-cta nav-cta">Get Started</a>
     </div>
   </nav>
@@ -580,7 +587,7 @@
           <div class="tmpl-tab-desc">Textured warm darks, bold typography, and raw personality.</div>
         </button>
         <button class="tmpl-tab" role="tab" aria-selected="false" data-tmpl="d">
-          <div class="tmpl-badge-popular" style="background:linear-gradient(135deg,#C9A227,#E5C158);color:#0C1824;">New</div>
+          <div class="tmpl-badge-popular" style="background:linear-gradient(135deg,#FF6600,#FF8533);color:#fff;">New</div>
           <div class="tmpl-tab-name">Ironwork</div>
           <div class="tmpl-tab-desc">Deep navy, slab-serif headings, masonry gallery. Sturdy and professional.</div>
         </button>
@@ -770,10 +777,11 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-brand">
-      <img src="images/Double Diamond Fabrication Logo.png" alt="DDFAB" style="height:24px;width:auto;">
+    <div class="footer-logos">
+      <img src="images/Double Diamond Fabrication Logo.png" alt="Double Diamond Fabrication">
+      <img src="images/Logo.png" alt="Iron Horse" class="footer-logo-ironhorse">
     </div>
-    <p class="footer-sub">Powered by Double Diamond Fabrication &middot; <a href="tel:5416788445">541-678-8445</a> &middot; <a href="https://ddfab.co">ddfab.co</a></p>
+    <p class="footer-sub">Double Diamond Fabrication &middot; <a href="tel:5416788445">541-678-8445</a> &middot; <a href="https://ddfab.co">ddfab.co</a></p>
     <p class="footer-copy">&copy; 2026 DDFAB. All rights reserved.</p>
   </footer>
 

@@ -18,6 +18,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
+      --ddfab-orange: #FF6600;
+      --ddfab-orange-light: #FF8533;
       --bg: #000000;
       --bg-card: #1A1A1A;
       --border: #2A2A2A;
@@ -43,15 +45,20 @@
       border-bottom: 1px solid var(--border);
       background: var(--bg);
     }
+    .topbar-logos {
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap;
+    }
     .topbar-brand {
       display: flex; align-items: center; gap: 10px;
       text-decoration: none;
     }
     .topbar-brand img { height: 22px; width: auto; }
+    .topbar-ironhorse { height: 26px; width: auto; display: block; }
     .topbar-badge {
       font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--text-dim);
-      background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+      letter-spacing: 0.08em; color: var(--ddfab-orange-light);
+      background: rgba(255,102,0,0.1); border: 1px solid rgba(255,102,0,0.35);
       border-radius: 3px; padding: 3px 8px;
     }
 
@@ -73,22 +80,10 @@
       display: flex; flex-direction: column; align-items: center; gap: 2px;
     }
     .switcher-tab:hover { color: #ddd; background: rgba(255,255,255,0.04); }
-    .switcher-tab.active { color: #fff; }
-    .switcher-tab[data-tmpl="a"].active {
-      border-bottom-color: #0891B2;
-      background: rgba(8, 145, 178, 0.12);
-    }
-    .switcher-tab[data-tmpl="b"].active {
-      border-bottom-color: #2563EB;
-      background: rgba(37, 99, 235, 0.12);
-    }
-    .switcher-tab[data-tmpl="c"].active {
-      border-bottom-color: #B45309;
-      background: rgba(180, 83, 9, 0.14);
-    }
-    .switcher-tab[data-tmpl="d"].active {
-      border-bottom-color: #C9A227;
-      background: rgba(201, 162, 39, 0.12);
+    .switcher-tab.active {
+      color: #fff;
+      border-bottom-color: var(--ddfab-orange);
+      background: rgba(255, 102, 0, 0.12);
     }
     .switcher-tab-sub {
       font-size: 11px; font-weight: 400; text-transform: none;
@@ -101,9 +96,8 @@
       color: #fff; border-radius: 2px;
       padding: 1px 5px; margin-left: 6px; vertical-align: middle;
       text-transform: uppercase; letter-spacing: 0.06em;
+      background: linear-gradient(135deg, var(--ddfab-orange), var(--ddfab-orange-light));
     }
-    .switcher-tab[data-tmpl="c"] .pop-badge { background: #B45309; }
-    .switcher-tab[data-tmpl="d"] .pop-badge { background: #C9A227; color: #0C1824; }
 
     .preview-area {
       flex: 1; position: relative;
@@ -128,9 +122,12 @@
 <body>
 
   <div class="topbar">
-    <a href="/" class="topbar-brand">
-      <img src="images/Double Diamond Fabrication Logo.png" alt="DDFAB">
-    </a>
+    <div class="topbar-logos">
+      <a href="/" class="topbar-brand">
+        <img src="images/Double Diamond Fabrication Logo.png" alt="Double Diamond Fabrication">
+      </a>
+      <img src="images/Logo.png" alt="Iron Horse" class="topbar-ironhorse">
+    </div>
     <span class="topbar-badge">Template Preview</span>
   </div>
 
