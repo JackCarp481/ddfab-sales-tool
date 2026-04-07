@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iron Ridge Welding & Fabrication | Welding, Fabrication & Custom Metalwork</title>
+  <meta name="description" content="Iron Ridge Welding & Fabrication — custom welding, metal fabrication, repairs, and specialty work in Dripping Springs, TX. Authorized DDFAB flatbed dealer.">
+  <meta property="og:title" content="Iron Ridge Welding & Fabrication">
+  <meta property="og:description" content="Built Tough. Built Right. Built Here. Custom welding and fabrication in Dripping Springs, TX.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       DESIGN TOKENS — Swap these per dealer
+       ======================================== */
+    :root {
+      /* Template C — forge amber / brass on textured dark */
+      --color-accent: #B45309;
+      --color-accent-hover: #D97706;
+      --color-accent-subtle: rgba(180, 83, 9, 0.14);
+      --color-bg-primary: #141210;
+      --color-bg-section: #1A1714;
+      --color-bg-card: #211E19;
+      --color-bg-highlight: #2A2520;
+      --color-text-primary: #F2E8D9;
+      --color-text-secondary: #B8A88A;
+      --color-text-muted: #A39682;
+      --color-border: #3A3530;
+      --color-border-accent: #B45309;
+      --font-heading: 'Oswald', sans-serif;
+      --font-body: 'Source Sans 3', sans-serif;
+      --radius: 2px;
+      --max-width: 1200px;
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg-primary);
+      color: var(--color-text-primary);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Diagonal texture overlay (used on select sections) */
+    .textured {
+      position: relative;
+    }
+
+    .textured::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.015) 10px,
+        rgba(255,255,255,0.015) 11px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .textured > * { position: relative; z-index: 1; }
+
+    /* ========================================
+       SECTION LABEL
+       ======================================== */
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::before {
+      content: '—';
+      color: var(--color-accent);
+    }
+
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(30px, 4.5vw, 48px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 250ms ease;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+    }
+
+    .btn-primary {
+      background: #9A3412;
+      color: #fff;
+      border-color: #9A3412;
+    }
+
+    .btn-primary:hover {
+      background: #7C2D12;
+      border-color: #7C2D12;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(180, 83, 9, 0.38);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.35);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+    }
+
+    .btn-outline:hover {
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ========================================
+       FADE-IN ANIMATION
+       ======================================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================
+       HEADER / NAVIGATION
+       ======================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(20, 18, 16, 0.8);
+      backdrop-filter: blur(8px);
+      transition: background 300ms ease;
+    }
+
+    .site-header.scrolled {
+      background: rgba(20, 18, 16, 0.97);
+    }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 42px; width: auto; }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-secondary);
+      transition: color 200ms ease;
+    }
+
+    .nav-links a:hover { color: var(--color-text-primary); }
+
+    .header-phone {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      letter-spacing: 0.02em;
+    }
+
+    .header-phone:hover { color: var(--color-accent); }
+
+    /* Hamburger — thick bars */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--color-text-primary);
+      margin: 5px 0;
+      transition: all 300ms ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+    /* Mobile menu — slides down */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(20, 18, 16, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 24px;
+      transform: translateY(-110%);
+      transition: transform 300ms ease;
+    }
+
+    .mobile-menu.active { transform: translateY(0); }
+
+    .mobile-menu a {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 14px 0;
+      color: var(--color-text-secondary);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .mobile-menu a:hover { color: var(--color-accent); }
+
+    /* ========================================
+       HERO — Bottom-left aligned
+       ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/Non-truck/Custom Fabrication Image (1).jpg') center center / cover no-repeat;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(20, 18, 16, 0.95) 0%,
+        rgba(20, 18, 16, 0.6) 40%,
+        rgba(20, 18, 16, 0.3) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 24px 80px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-location {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-location::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 2px;
+      background: var(--color-accent);
+    }
+
+    .hero-name {
+      font-family: var(--font-heading);
+      font-size: clamp(44px, 9vw, 96px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 0.95;
+      margin-bottom: 16px;
+      max-width: 800px;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--color-text-secondary);
+      margin-bottom: 36px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ========================================
+       ABOUT — Offset overlapping layout
+       ======================================== */
+    .about {
+      background: var(--color-bg-section);
+      padding: 120px 0 0;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+    }
+
+    .about-image {
+      overflow: hidden;
+      margin-left: -60px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+    }
+
+    .about-text {
+      padding-top: 40px;
+    }
+
+    .about-text p {
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    /* Stats scoreboard bar */
+    .stats-bar {
+      background: var(--color-accent);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-top: 0;
+    }
+
+    .stats-bar .stat {
+      flex: 1;
+      text-align: center;
+      padding: 32px 20px;
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .stats-bar .stat:last-child { border-right: none; }
+
+    .stats-bar .stat-number {
+      font-family: var(--font-heading);
+      font-size: 40px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .stats-bar .stat-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-top: 6px;
+    }
+
+    /* ========================================
+       SERVICES — Full-width stacked rows
+       ======================================== */
+    .services {
+      background: var(--color-bg-primary);
+      padding: 120px 0;
+    }
+
+    .services-list { margin-top: 60px; }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 1.2fr;
+      gap: 24px;
+      align-items: baseline;
+      padding: 28px 0;
+      border-top: 1px solid var(--color-border);
+      transition: all 250ms ease;
+    }
+
+    .service-row:last-child {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .service-row:hover {
+      background: var(--color-bg-highlight);
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .service-num {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-accent);
+      line-height: 1;
+      transition: transform 250ms ease;
+    }
+
+    .service-row:hover .service-num { transform: scale(1.15); }
+
+    .service-row h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .service-row p {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       FLATBED SECTION
+       ======================================== */
+    .flatbed {
+      background: var(--color-bg-card);
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .flatbed::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.015) 10px,
+        rgba(255,255,255,0.015) 11px
+      );
+      pointer-events: none;
+    }
+
+    .flatbed > * { position: relative; z-index: 1; }
+
+    .flatbed-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 48px;
+    }
+
+    .flatbed-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .flatbed-images .fi {
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+    }
+
+    .flatbed-images .fi:first-child {
+      grid-column: span 2;
+      aspect-ratio: 16 / 9;
+    }
+
+    .flatbed-images .fi img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .flatbed-text h3 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .flatbed-text p {
+      color: var(--color-text-secondary);
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
+
+    .flatbed-features {
+      list-style: none;
+      margin: 24px 0 32px;
+    }
+
+    .flatbed-features li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flatbed-features li::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 3px;
+      background: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .flatbed-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ========================================
+       GALLERY — Clip-path grid
+       ======================================== */
+    .gallery {
+      background: var(--color-bg-section);
+      padding: 120px 0;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+      aspect-ratio: 1 / 1;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 400ms ease;
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+      transition: border-color 300ms ease;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item:hover::after { border-color: var(--color-accent); }
+
+    /* ========================================
+       DDFAB BADGE — Full accent background
+       ======================================== */
+    .ddfab-badge {
+      background: var(--color-accent);
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .ddfab-badge-logo {
+      height: 56px;
+      width: auto;
+      margin: 0 auto 28px;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+
+    .ddfab-badge h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .ddfab-badge p {
+      color: rgba(255,255,255,0.95);
+      max-width: 560px;
+      margin: 0 auto 32px;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    /* ========================================
+       CONTACT SECTION
+       ======================================== */
+    .contact {
+      background: var(--color-bg-primary);
+      padding: 120px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-top: 48px;
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 24px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-group label {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--color-bg-card);
+      border: none;
+      border-left: 3px solid var(--color-accent);
+      padding: 14px 16px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--color-text-primary);
+      transition: border-color 200ms ease, border-width 200ms ease;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-left-width: 5px;
+      border-left-color: var(--color-accent-hover);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--color-text-muted); }
+
+    .btn-submit {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+    }
+
+    .contact-info { padding-top: 0; }
+
+    .contact-phone-big {
+      font-family: var(--font-heading);
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 36px;
+      display: block;
+      transition: color 200ms ease;
+    }
+
+    .contact-phone-big:hover { color: var(--color-accent); }
+
+    .contact-detail {
+      margin-bottom: 24px;
+    }
+
+    .contact-detail .detail-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-detail .detail-label::before {
+      content: '—';
+    }
+
+    .contact-detail p,
+    .contact-detail a {
+      color: var(--color-text-secondary);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .contact-detail a:hover { color: var(--color-text-primary); }
+
+    .map-placeholder {
+      width: 100%;
+      height: 180px;
+      background: var(--color-bg-card);
+      border-left: 3px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-muted);
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .site-footer {
+      background: var(--color-bg-primary);
+      border-top: 2px solid var(--color-accent);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+    }
+
+    .footer-name {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-transform: uppercase;
+    }
+
+    .footer-center {
+      text-align: center;
+      font-size: 13px;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-center a { color: var(--color-text-secondary); }
+    .footer-center a:hover { color: var(--color-text-primary); }
+
+    .footer-power {
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+
+    .footer-power a {
+      color: var(--color-accent);
+      font-weight: 600;
+    }
+
+    .footer-bottom {
+      padding: 16px 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .mobile-menu { display: block; }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+      .about-image { margin-left: 0; }
+
+      .service-row {
+        grid-template-columns: 60px 1fr;
+      }
+      .service-row p { grid-column: 1 / -1; padding-left: 84px; }
+
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-content { padding-bottom: 48px; }
+      .hero { min-height: 90vh; }
+
+      .about, .services, .gallery, .contact { padding: 80px 0; }
+
+      .stats-bar { flex-direction: column; }
+      .stats-bar .stat {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding: 20px;
+      }
+      .stats-bar .stat:last-child { border-bottom: none; }
+
+      .service-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .service-num { font-size: 24px; }
+      .service-row p { padding-left: 0; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================
+       HEADER / NAVIGATION
+       ======================================== -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <img src="images/Logo.png" alt="Iron Ridge Welding & Fabrication logo">
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#flatbeds">Flatbeds</a></li>
+          <li><a href="#gallery">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="tel:5125550187" class="header-phone">(512) 555-0187</a>
+      <button class="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#flatbeds">Flatbeds</a>
+    <a href="#gallery">Work</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:5125550187">(512) 555-0187</a>
+  </nav>
+
+  <main>
+    <!-- ========================================
+         HERO — Bottom-left aligned, dramatic
+         ======================================== -->
+    <section class="hero" id="hero">
+      <div class="hero-bg" role="img" aria-label="Custom metal fabrication work in progress"></div>
+      <div class="hero-content">
+        <p class="hero-location">Dripping Springs, Texas</p>
+        <h1 class="hero-name">Iron Ridge<br>Welding &<br>Fabrication</h1>
+        <p class="hero-tagline">Built Tough. Built Right. Built Here.</p>
+        <a href="#contact" class="btn btn-primary">Get a Quote</a>
+      </div>
+    </section>
+
+    <!-- ========================================
+         ABOUT — Offset overlapping layout
+         ======================================== -->
+    <section class="about textured" id="about">
+      <div class="container">
+        <div class="about-layout">
+          <div class="about-image fade-in">
+            <img src="images/Non-truck/Custom Fabrication Image.jpg" alt="Jake Dawson working in the Iron Ridge welding shop">
+          </div>
+          <div class="about-text fade-in">
+            <p class="section-label">About</p>
+            <h2 class="section-heading">Third Generation.<br>Zero Shortcuts.</h2>
+            <p>Third-generation welder, Jake Dawson started Iron Ridge in his garage in 2013. What began as one man and a Miller welder has grown into a 4,000 square foot shop with a crew of three — but the standard hasn't changed.</p>
+            <p>Most days we're building gates, doing repairs, fabricating one-off parts, and tackling custom metalwork for ranchers and contractors across central Texas. We're also an authorized DDFAB dealer when you need a professional flatbed install — but that's one part of the shop, not the whole story. Every build leaves the shop with Jake's name on it — and he takes that personally.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stats-bar fade-in">
+        <div class="stat">
+          <div class="stat-number">12+</div>
+          <div class="stat-label">Years</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Builds</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">Zero</div>
+          <div class="stat-label">Comebacks</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         SERVICES — Full-width stacked rows
+         ======================================== -->
+    <section class="services textured" id="services">
+      <div class="container">
+        <p class="section-label fade-in">What We Do</p>
+        <h2 class="section-heading fade-in">Services</h2>
+        <div class="services-list">
+          <div class="service-row fade-in">
+            <span class="service-num">01</span>
+            <h3>Custom Fabrication</h3>
+            <p>If you can draw it on a napkin, we can build it. Custom metalwork for any application, built to your exact specifications.</p>
+          </div>
+          <div class="service-row fade-in">
+            <span class="service-num">02</span>
+            <h3>Welding Repair</h3>
+            <p>Cracked frame? Broken hitch? We fix what others won't. Structural and cosmetic welding repair for trucks, trailers, and equipment.</p>
+          </div>
+          <div class="service-row fade-in">
+            <span class="service-num">03</span>
+            <h3>Ranch & Ag Equipment</h3>
+            <p>Gates, feeders, chutes, and custom ranch builds designed for central Texas land and livestock.</p>
+          </div>
+          <div class="service-row fade-in">
+            <span class="service-num">04</span>
+            <h3>Truck Accessories</h3>
+            <p>Headache racks, toolboxes, bumpers, and bolt-on upgrades. Make your truck work as hard as you do.</p>
+          </div>
+          <div class="service-row fade-in">
+            <span class="service-num">05</span>
+            <h3>Flatbed Truck Builds</h3>
+            <p>Custom flatbed installations for Ford, Chevy, Dodge, and Toyota trucks. Authorized DDFAB dealer with factory-cut kits and proven build process.</p>
+          </div>
+          <div class="service-row fade-in">
+            <span class="service-num">06</span>
+            <h3>Fleet Services</h3>
+            <p>Volume pricing and priority scheduling for contractors and fleet operators. Keep your trucks on the road.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         FLATBED SECTION
+         ======================================== -->
+    <section class="flatbed" id="flatbeds">
+      <div class="container">
+        <p class="section-label fade-in">Authorized DDFAB Dealer</p>
+        <h2 class="section-heading fade-in">Flatbed Truck Builds</h2>
+        <div class="flatbed-grid">
+          <div class="flatbed-images fade-in">
+            <div class="fi"><img src="images/Ford Flatbed Products.jpeg" alt="DDFAB flatbed installed on Ford truck" loading="lazy"></div>
+            <div class="fi"><img src="images/Ford Flatbed Products (1).jpg" alt="DDFAB flatbed side view" loading="lazy"></div>
+            <div class="fi"><img src="images/Ford Flatbed Products (2).jpg" alt="DDFAB flatbed rear view" loading="lazy"></div>
+          </div>
+          <div class="flatbed-text fade-in">
+            <h3>Factory-Cut DDFAB Kits</h3>
+            <p>As an authorized DDFAB dealer, Iron Ridge offers professional installation of Double Diamond Fabrication flatbed kits — precision-cut steel beds designed for Ford, Chevy, Dodge, and Toyota trucks.</p>
+            <p>Every kit is factory-cut for exact fit and backed by the DDFAB dealer network. We handle the full build and install right here in our shop.</p>
+            <ul class="flatbed-features">
+              <li>SRW, Dually, Tacoma, and Cab & Chassis models</li>
+              <li>Toolboxes, bed rails, step fenders, and more add-ons</li>
+              <li>Full skirted and custom options available</li>
+              <li>Professional installation with paint matching</li>
+              <li>Trex deck and steel deck options</li>
+            </ul>
+            <a href="https://ddfab.co/hq/?dealernetworklead#pricesheet" target="_blank" rel="noopener" class="btn btn-primary">Download the Price Sheet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         GALLERY — Clip-path grid
+         ======================================== -->
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <p class="section-label fade-in">Our Work</p>
+        <h2 class="section-heading fade-in">The Proof Is in the Steel</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item fade-in"><img src="images/Non-truck/Custom Fabrication Image (1).jpg" alt="Custom metal fabrication in the shop" loading="lazy"></div>
+          <div class="gallery-item fade-in"><img src="images/Non-truck/Custom Fabrication Image (2).jpg" alt="Structural fabrication detail" loading="lazy"></div>
+          <div class="gallery-item fade-in"><img src="images/Non-truck/Custom Signage Hex Industries.jpg" alt="Custom commercial signage" loading="lazy"></div>
+          <div class="gallery-item fade-in"><img src="images/Non-truck/Custom Signage IMG 4558.jpg" alt="Custom CNC-cut metal signage" loading="lazy"></div>
+          <div class="gallery-item fade-in"><img src="images/Non-truck/Custom Signage IMG 7148.jpg" alt="Architectural metal signage project" loading="lazy"></div>
+          <div class="gallery-item fade-in"><img src="images/Non-truck/Custom Golf Tee Markers.jpg" alt="Custom golf course tee markers" loading="lazy"></div>
+          <div class="gallery-item fade-in"><img src="images/Ford Flatbed Products.jpeg" alt="DDFAB flatbed truck build" loading="lazy"></div>
+          <div class="gallery-item fade-in"><img src="images/Ford Flatbed Products (1).jpg" alt="Professional flatbed installation" loading="lazy"></div>
+          <div class="gallery-item fade-in"><img src="images/Ford Flatbed Products (3).jpg" alt="Skirted flatbed with accessories" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         DDFAB BADGE — Full accent background
+         ======================================== -->
+    <section class="ddfab-badge">
+      <div class="container fade-in">
+        <img src="images/Logo.png" alt="DDFAB logo" class="ddfab-badge-logo">
+        <h2>Authorized DDFAB Builder Dealer</h2>
+        <p>Factory-cut flatbed kits. Professional installation. Backed by the DDFAB network.</p>
+        <a href="https://ddfab.co" target="_blank" rel="noopener" class="btn btn-outline">Visit DDFAB.co</a>
+      </div>
+    </section>
+
+    <!-- ========================================
+         CONTACT SECTION
+         ======================================== -->
+    <section class="contact textured" id="contact">
+      <div class="container">
+        <p class="section-label fade-in">Contact</p>
+        <h2 class="section-heading fade-in">Let's Build Something</h2>
+        <div class="contact-grid">
+
+          <form class="contact-form fade-in" action="#" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(512) 555-0000">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit">Send It</button>
+          </form>
+
+          <div class="contact-info fade-in">
+            <a href="tel:5125550187" class="contact-phone-big">(512) 555-0187</a>
+
+            <div class="contact-detail">
+              <div class="detail-label">Address</div>
+              <p>1247 Ranch Road 12<br>Dripping Springs, TX 78620</p>
+            </div>
+
+            <div class="contact-detail">
+              <div class="detail-label">Email</div>
+              <p><a href="mailto:info@ironridgewelding.com">info@ironridgewelding.com</a></p>
+            </div>
+
+            <div class="contact-detail">
+              <div class="detail-label">Hours</div>
+              <p>Mon–Fri: 7AM – 5PM<br>Sat: By Appointment</p>
+            </div>
+
+            <div class="map-placeholder">
+              Google Map Embed
+            </div>
+            <!--
+              Replace with:
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================
+       FOOTER
+       ======================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">Iron Ridge Welding & Fabrication</span>
+        <div class="footer-center">
+          1247 Ranch Road 12, Dripping Springs, TX 78620<br>
+          <a href="tel:5125550187">(512) 555-0187</a>
+        </div>
+        <span class="footer-power">Powered by <a href="https://ddfab.co" target="_blank" rel="noopener">DDFAB</a></span>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 Iron Ridge Welding & Fabrication. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================
+       JAVASCRIPT
+       ======================================== -->
+  <script>
+    /* Sticky header */
+    const header = document.getElementById('header');
+    const onScroll = () => {
+      header.classList.toggle('scrolled', window.scrollY > 80);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* Smooth scroll */
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 68;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          closeMobileMenu();
+        }
+      });
+    });
+
+    /* Mobile menu */
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('active');
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        hamburger.classList.add('active');
+        mobileMenu.classList.add('active');
+      }
+    });
+
+    /* Scroll-triggered fade-in */
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+  </script>
+</body>
+</html>

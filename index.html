@@ -18,9 +18,9 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700;800;900&family=Oswald:wght@400;500;600;700&family=Play:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --orange: #FF6600;
-      --orange-light: #FF8533;
-      --orange-glow: rgba(255, 102, 0, 0.4);
+      --cta: #0D9488;
+      --cta-light: #14B8A6;
+      --cta-glow: rgba(13, 148, 136, 0.45);
       --bg: #000000;
       --bg-raised: #0D0D0D;
       --bg-card: #1A1A1A;
@@ -29,8 +29,8 @@
       --border-light: #333333;
       --text: #FFFFFF;
       --text-muted: #CCCCCC;
-      --text-dim: #AAAAAA;
-      --text-faint: #666666;
+      --text-dim: #B8B8B8;
+      --text-faint: #8E8E8E;
       --max-w: 1140px;
       --radius: 4px;
     }
@@ -52,8 +52,8 @@
     .section-tag {
       display: inline-block;
       font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--orange);
-      border: 1px solid rgba(255,102,0,0.3);
+      text-transform: uppercase; color: var(--cta);
+      border: 1px solid rgba(13,148,136,0.3);
       padding: 5px 14px; border-radius: 2px; margin-bottom: 16px;
     }
     .section-title {
@@ -76,14 +76,14 @@
       cursor: pointer; transition: all 250ms ease;
       text-decoration: none;
     }
-    .btn-orange {
-      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    .btn-cta {
+      background: linear-gradient(135deg, var(--cta), var(--cta-light));
       color: #fff;
-      box-shadow: 0 4px 16px rgba(255,102,0,0.25);
+      box-shadow: 0 4px 16px rgba(13,148,136,0.25);
     }
-    .btn-orange:hover {
+    .btn-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px var(--orange-glow);
+      box-shadow: 0 8px 30px var(--cta-glow);
     }
     .btn-ghost {
       background: transparent;
@@ -115,7 +115,7 @@
     .nav-brand {
       display: flex; align-items: center; gap: 10px;
       font-size: 15px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--orange);
+      letter-spacing: 0.08em; color: var(--text);
     }
     .nav-brand svg { flex-shrink: 0; }
     .nav-cta { padding: 10px 24px; font-size: 13px; }
@@ -126,11 +126,11 @@
       position: relative; overflow: hidden;
       padding: 120px 0 100px;
       background: linear-gradient(to bottom, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.72) 40%, rgba(0,0,0,0.92) 100%),
-        url('images/Landing_Hero.JPG') center/cover no-repeat;
+        url('images/Non-truck/Custom Fabrication Image (1).jpg') center/cover no-repeat;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(255,102,0,0.06) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 60% 40%, rgba(13,148,136,0.06) 0%, transparent 65%);
       pointer-events: none;
     }
     .hero::after {
@@ -143,8 +143,8 @@
     .hero-badge {
       display: inline-block;
       font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--orange);
-      border: 1px solid rgba(255,102,0,0.35); padding: 6px 18px;
+      text-transform: uppercase; color: var(--cta);
+      border: 1px solid rgba(13,148,136,0.35); padding: 6px 18px;
       border-radius: 2px; margin-bottom: 28px;
     }
     .hero-title {
@@ -153,7 +153,7 @@
       letter-spacing: -0.01em; line-height: 1.08;
       margin-bottom: 24px;
     }
-    .hero-title span { color: var(--orange); }
+    .hero-title span { color: var(--cta); }
     .hero-sub {
       font-size: clamp(16px, 2vw, 20px);
       color: var(--text-muted); line-height: 1.7;
@@ -190,17 +190,17 @@
       transition: border-color 300ms, transform 300ms;
     }
     .feat-card:hover {
-      border-color: rgba(255,102,0,0.4);
+      border-color: rgba(13,148,136,0.4);
       transform: translateY(-4px);
     }
     .feat-icon {
       width: 44px; height: 44px;
-      background: rgba(255,102,0,0.1);
+      background: rgba(13,148,136,0.1);
       border-radius: var(--radius);
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 18px;
     }
-    .feat-icon svg { width: 22px; height: 22px; stroke: var(--orange); fill: none; stroke-width: 1.5; }
+    .feat-icon svg { width: 22px; height: 22px; stroke: var(--cta); fill: none; stroke-width: 1.5; }
     .feat-title {
       font-size: 15px; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.04em;
@@ -224,8 +224,8 @@
       cursor: pointer; transition: all 250ms; position: relative;
       text-align: left;
     }
-    .tmpl-tab:hover { border-color: rgba(255,102,0,0.3); }
-    .tmpl-tab.active { border-color: var(--orange); background: rgba(255,102,0,0.04); }
+    .tmpl-tab:hover { border-color: rgba(13,148,136,0.3); }
+    .tmpl-tab.active { border-color: var(--cta); background: rgba(13,148,136,0.04); }
     .tmpl-tab-name {
       font-size: 15px; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.04em; margin-bottom: 4px;
@@ -233,7 +233,7 @@
     .tmpl-tab-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
     .tmpl-badge-popular {
       position: absolute; top: -10px; right: 12px;
-      background: var(--orange); color: #fff;
+      background: var(--cta); color: #fff;
       font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
       text-transform: uppercase; padding: 3px 10px;
       border-radius: 2px;
@@ -270,8 +270,8 @@
     .tmpl-slide.active { opacity: 1; pointer-events: auto; position: relative; }
     .tmpl-slide-label {
       font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--orange);
-      border: 1px solid rgba(255,102,0,0.3); padding: 4px 12px;
+      text-transform: uppercase; color: var(--cta);
+      border: 1px solid rgba(13,148,136,0.3); padding: 4px 12px;
       border-radius: 2px;
     }
     .tmpl-slide-name {
@@ -302,7 +302,7 @@
     .tmpl-view-link {
       display: inline-flex; align-items: center; gap: 8px;
       margin-top: 16px; font-size: 14px; font-weight: 700;
-      color: var(--orange); text-transform: uppercase;
+      color: var(--cta); text-transform: uppercase;
       letter-spacing: 0.06em; text-decoration: none;
       transition: gap 0.2s;
     }
@@ -320,12 +320,12 @@
       content: ''; position: absolute;
       top: 24px; left: calc(12.5% + 24px); right: calc(12.5% + 24px);
       height: 2px;
-      background: linear-gradient(to right, var(--orange), rgba(255,102,0,0.2));
+      background: linear-gradient(to right, var(--cta), rgba(13,148,136,0.2));
     }
     .how-step { text-align: center; }
     .how-num {
       width: 48px; height: 48px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      background: linear-gradient(135deg, var(--cta), var(--cta-light));
       color: #fff; font-size: 18px; font-weight: 700;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 18px; position: relative; z-index: 1;
@@ -349,14 +349,14 @@
     }
     .price-card::before {
       content: ''; position: absolute; inset: -2px; border-radius: 8px;
-      background: linear-gradient(135deg, var(--orange), transparent 60%);
+      background: linear-gradient(135deg, var(--cta), transparent 60%);
       z-index: -1; opacity: 0.3;
     }
     .price-special {
       display: inline-block;
       font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--orange);
-      background: rgba(255,102,0,0.1);
+      text-transform: uppercase; color: var(--cta);
+      background: rgba(13,148,136,0.1);
       padding: 6px 16px; border-radius: 2px; margin-bottom: 24px;
     }
     .price-original {
@@ -365,7 +365,7 @@
     }
     .price-current {
       font-size: clamp(48px, 8vw, 72px);
-      font-weight: 700; color: var(--orange);
+      font-weight: 700; color: var(--cta);
       line-height: 1; margin-bottom: 8px;
     }
     .price-note {
@@ -381,7 +381,7 @@
       display: flex; align-items: center; gap: 10px;
     }
     .price-includes li:last-child { border-bottom: none; }
-    .price-check { color: var(--orange); flex-shrink: 0; font-size: 16px; }
+    .price-check { color: var(--cta); flex-shrink: 0; font-size: 16px; }
     .price-card .btn { width: 100%; justify-content: center; }
 
     /* ── FORM CTA ─────────────────────────────────── */
@@ -414,8 +414,8 @@
     .form-row input:focus,
     .form-row select:focus,
     .form-row textarea:focus {
-      outline: none; border-color: var(--orange);
-      box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
+      outline: none; border-color: var(--cta);
+      box-shadow: 0 0 0 3px rgba(13,148,136,0.15);
     }
     .form-row textarea { min-height: 100px; resize: vertical; }
     .form-row select { appearance: none; cursor: pointer; }
@@ -435,12 +435,12 @@
       transition: all 200ms; color: var(--text-dim);
     }
     .radio-opt input:checked + label {
-      border-color: var(--orange); color: var(--orange);
-      background: rgba(255,102,0,0.06);
+      border-color: var(--cta); color: var(--cta);
+      background: rgba(13,148,136,0.06);
     }
-    .radio-opt label:hover { border-color: rgba(255,102,0,0.3); }
+    .radio-opt label:hover { border-color: rgba(13,148,136,0.3); }
     .radio-opt input:focus-visible + label {
-      box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
+      box-shadow: 0 0 0 3px rgba(13,148,136,0.15);
     }
 
     .form-submit { margin-top: 28px; }
@@ -455,11 +455,11 @@
       display: flex; align-items: center; gap: 10px;
       justify-content: center; margin-bottom: 12px;
       font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--orange); font-size: 14px;
+      letter-spacing: 0.08em; color: var(--text-muted); font-size: 14px;
     }
     .footer-brand svg { flex-shrink: 0; }
     .footer-sub { font-size: 13px; color: var(--text-dim); margin-bottom: 6px; }
-    .footer-sub a { color: var(--orange); }
+    .footer-sub a { color: var(--cta); }
     .footer-copy { font-size: 12px; color: var(--text-faint); }
 
     /* ── RESPONSIVE ───────────────────────────────── */
@@ -491,7 +491,7 @@
       <a href="https://ddfab.co" class="nav-brand">
         <img src="images/Double Diamond Fabrication Logo.png" alt="DDFAB" style="height:28px;width:auto;">
       </a>
-      <a href="#form" class="btn btn-orange nav-cta">Get Started</a>
+      <a href="#form" class="btn btn-cta nav-cta">Get Started</a>
     </div>
   </nav>
 
@@ -501,13 +501,13 @@
       <div class="hero-content">
         <div class="hero-badge fade-up">Built for DDFAB Builder Dealers</div>
         <h1 class="hero-title fade-up">
-          Your Shop Deserves a Website That <span>Works as Hard as You Do</span>
+          Your Shop Deserves a Website That <span>Shows the Full Picture</span>
         </h1>
         <p class="hero-sub fade-up">
-          Professional websites built specifically for welding and fabrication shops. Ready in days, not months.
+          Professional sites for welding and fabrication shops — not just flatbeds. Highlight every service you offer, with a dedicated space for DDFAB when it matters. Ready in days, not months.
         </p>
         <div class="hero-ctas fade-up">
-          <a href="#templates" class="btn btn-orange">
+          <a href="#templates" class="btn btn-cta">
             See the Templates
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 14l-7 7-7-7M19 3l-7 7-7-7"/></svg>
           </a>
@@ -611,7 +611,7 @@
       <div class="templates-header fade-up">
         <div class="section-tag">Pick Your Style</div>
         <h2 class="section-title">Four Designs. Same Powerful Features.</h2>
-        <p class="section-sub">Choose the one that fits your shop's personality. Every template is built from the ground up for metal shops.</p>
+        <p class="section-sub">Choose the one that fits your shop's personality. Every template is built for full-service fab and weld shops — with room to showcase DDFAB flatbeds as one part of what you do.</p>
       </div>
 
       <div class="tmpl-tabs" role="tablist">
@@ -629,7 +629,7 @@
           <div class="tmpl-tab-desc">Textured warm darks, bold typography, and raw personality.</div>
         </button>
         <button class="tmpl-tab" role="tab" aria-selected="false" data-tmpl="d">
-          <div class="tmpl-badge-popular" style="background:linear-gradient(135deg,#1A6BFF,#3D8BFF);color:#fff;">New</div>
+          <div class="tmpl-badge-popular" style="background:linear-gradient(135deg,#C9A227,#E5C158);color:#0C1824;">New</div>
           <div class="tmpl-tab-name">Ironwork</div>
           <div class="tmpl-tab-desc">Deep navy, slab-serif headings, masonry gallery. Sturdy and professional.</div>
         </button>
@@ -649,9 +649,9 @@
             <div class="tmpl-slide-name">Dark & Sleek</div>
             <div class="tmpl-slide-vibe">Bold dark backgrounds, card-based layouts, and a modern edge. The safe bet that works for every shop.</div>
             <div class="iframe-wrap">
-              <iframe src="https://ddfab-website-builder.vercel.app/template-a.html" loading="lazy" title="Dark Industrial template preview"></iframe>
+              <iframe src="dealer-demo/template-a.html" loading="lazy" title="Dark Industrial template preview"></iframe>
             </div>
-            <a href="https://ddfab-website-builder.vercel.app/template-a.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
+            <a href="dealer-demo/template-a.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
           </div>
 
           <div class="tmpl-slide" data-tmpl="b" role="tabpanel">
@@ -659,9 +659,9 @@
             <div class="tmpl-slide-name">Clean Industrial</div>
             <div class="tmpl-slide-vibe">Light backgrounds with industrial details. Editorial layout that lets your work photography pop.</div>
             <div class="iframe-wrap">
-              <iframe src="https://ddfab-website-builder.vercel.app/template-b.html" loading="lazy" title="Clean Industrial template preview"></iframe>
+              <iframe src="dealer-demo/template-b.html" loading="lazy" title="Clean Industrial template preview"></iframe>
             </div>
-            <a href="https://ddfab-website-builder.vercel.app/template-b.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
+            <a href="dealer-demo/template-b.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
           </div>
 
           <div class="tmpl-slide" data-tmpl="c" role="tabpanel">
@@ -669,9 +669,9 @@
             <div class="tmpl-slide-name">Workshop Grit</div>
             <div class="tmpl-slide-vibe">Textured warm darks, bold condensed typography, and raw personality. Feels like it belongs to a welder, not a designer.</div>
             <div class="iframe-wrap">
-              <iframe src="https://ddfab-website-builder.vercel.app/template-c.html" loading="lazy" title="Workshop Grit template preview"></iframe>
+              <iframe src="dealer-demo/template-c.html" loading="lazy" title="Workshop Grit template preview"></iframe>
             </div>
-            <a href="https://ddfab-website-builder.vercel.app/template-c.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
+            <a href="dealer-demo/template-c.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
           </div>
 
           <div class="tmpl-slide" data-tmpl="d" role="tabpanel">
@@ -679,9 +679,9 @@
             <div class="tmpl-slide-name">Ironwork</div>
             <div class="tmpl-slide-vibe">Deep navy palette with slab-serif headings, zigzag service layout, and masonry gallery. Sturdy, professional, and built to impress.</div>
             <div class="iframe-wrap">
-              <iframe src="https://ddfab-website-builder.vercel.app/template-d.html" loading="lazy" title="Ironwork template preview"></iframe>
+              <iframe src="dealer-demo/template-d.html" loading="lazy" title="Ironwork template preview"></iframe>
             </div>
-            <a href="https://ddfab-website-builder.vercel.app/template-d.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
+            <a href="dealer-demo/template-d.html" target="_blank" rel="noopener" class="tmpl-view-link">View Live Template &rarr;</a>
           </div>
 
         </div>
@@ -706,7 +706,7 @@
         <div class="how-step fade-up">
           <div class="how-num">2</div>
           <div class="how-label">Pick Your Template</div>
-          <p class="how-desc">Choose from three professional design styles built specifically for metal shops.</p>
+          <p class="how-desc">Choose from four professional design styles built for welding and fabrication shops.</p>
         </div>
         <div class="how-step fade-up">
           <div class="how-num">3</div>
@@ -745,7 +745,7 @@
           <li><span class="price-check">&#10003;</span> Fast, secure modern hosting</li>
           <li><span class="price-check">&#10003;</span> Domain setup & connection</li>
         </ul>
-        <a href="#form" class="btn btn-orange">Get Started for $3,250</a>
+        <a href="#form" class="btn btn-cta">Get Started for $3,250</a>
       </div>
     </div>
   </section>
@@ -835,7 +835,7 @@
           </div>
 
           <div class="form-submit">
-            <button type="submit" class="btn btn-orange">
+            <button type="submit" class="btn btn-cta">
               Let's Get Started
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>

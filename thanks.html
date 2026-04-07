@@ -18,14 +18,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --orange: #FF6600;
-      --orange-light: #FF8533;
+      --cta: #0D9488;
+      --cta-light: #14B8A6;
       --bg: #000000;
       --bg-card: #1A1A1A;
       --border: #2A2A2A;
       --text: #FFFFFF;
       --text-muted: #CCCCCC;
-      --text-dim: #AAAAAA;
+      --text-dim: #B8B8B8;
       --text-faint: #666666;
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,11 +47,11 @@
     }
     .icon {
       width: 64px; height: 64px; border-radius: 50%;
-      background: rgba(255,102,0,0.12);
+      background: rgba(13,148,136,0.12);
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 24px;
     }
-    .icon svg { width: 32px; height: 32px; stroke: var(--orange); fill: none; stroke-width: 2; }
+    .icon svg { width: 32px; height: 32px; stroke: var(--cta); fill: none; stroke-width: 2; }
     h1 {
       font-size: clamp(24px, 4vw, 36px);
       font-weight: 700; text-transform: uppercase;
@@ -68,23 +68,23 @@
       text-transform: uppercase; letter-spacing: 0.06em;
       border: none; border-radius: 4px;
       cursor: pointer; transition: all 250ms; text-decoration: none;
-      background: linear-gradient(135deg, var(--orange), var(--orange-light));
-      color: #fff; box-shadow: 0 4px 16px rgba(255,102,0,0.25);
+      background: linear-gradient(135deg, var(--cta), var(--cta-light));
+      color: #fff; box-shadow: 0 4px 16px rgba(13,148,136,0.25);
     }
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(255,102,0,0.4);
+      box-shadow: 0 8px 30px rgba(13,148,136,0.4);
     }
     .footer {
       margin-top: 40px;
       font-size: 13px; color: var(--text-faint);
     }
-    .footer a { color: var(--orange); text-decoration: none; }
+    .footer a { color: var(--cta); text-decoration: none; }
     .brand {
       display: flex; align-items: center; gap: 8px;
       justify-content: center; margin-bottom: 32px;
       font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--orange); font-size: 14px;
+      letter-spacing: 0.08em; color: var(--text-muted); font-size: 14px;
     }
     @media (max-width: 600px) {
       .card { padding: 36px 24px; }
@@ -106,24 +106,24 @@
     </p>
     <div style="text-align:left;max-width:420px;margin:0 auto 32px;">
       <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;">
-        <div style="min-width:32px;height:32px;border-radius:50%;background:rgba(255,102,0,0.12);display:flex;align-items:center;justify-content:center;color:#FF6600;font-weight:700;font-size:14px;">1</div>
+        <div style="min-width:32px;height:32px;border-radius:50%;background:rgba(13,148,136,0.12);display:flex;align-items:center;justify-content:center;color:#0D9488;font-weight:700;font-size:14px;">1</div>
         <div>
           <div style="font-weight:700;margin-bottom:2px;">We'll reach out to confirm details</div>
-          <div style="font-size:14px;color:#AAAAAA;line-height:1.6;">Expect a call or email within 24 hours to go over your shop info, photos, and any questions.</div>
+          <div style="font-size:14px;color:#B8B8B8;line-height:1.6;">Expect a call or email within 24 hours to go over your shop info, photos, and any questions.</div>
         </div>
       </div>
       <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;">
-        <div style="min-width:32px;height:32px;border-radius:50%;background:rgba(255,102,0,0.12);display:flex;align-items:center;justify-content:center;color:#FF6600;font-weight:700;font-size:14px;">2</div>
+        <div style="min-width:32px;height:32px;border-radius:50%;background:rgba(13,148,136,0.12);display:flex;align-items:center;justify-content:center;color:#0D9488;font-weight:700;font-size:14px;">2</div>
         <div>
           <div style="font-weight:700;margin-bottom:2px;">Invoice to get started</div>
-          <div style="font-size:14px;color:#AAAAAA;line-height:1.6;">We'll send over an invoice so we can kick off your build right away.</div>
+          <div style="font-size:14px;color:#B8B8B8;line-height:1.6;">We'll send over an invoice so we can kick off your build right away.</div>
         </div>
       </div>
       <div style="display:flex;gap:14px;align-items:flex-start;">
-        <div style="min-width:32px;height:32px;border-radius:50%;background:rgba(255,102,0,0.12);display:flex;align-items:center;justify-content:center;color:#FF6600;font-weight:700;font-size:14px;">3</div>
+        <div style="min-width:32px;height:32px;border-radius:50%;background:rgba(13,148,136,0.12);display:flex;align-items:center;justify-content:center;color:#0D9488;font-weight:700;font-size:14px;">3</div>
         <div>
           <div style="font-weight:700;margin-bottom:2px;">Your site goes live</div>
-          <div style="font-size:14px;color:#AAAAAA;line-height:1.6;">Expect your new website to be live within <strong style="color:#fff;">7&ndash;10 business days</strong>.</div>
+          <div style="font-size:14px;color:#B8B8B8;line-height:1.6;">Expect your new website to be live within <strong style="color:#fff;">7&ndash;10 business days</strong>.</div>
         </div>
       </div>
     </div>
