@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Template Demo — DDFAB Dealer Websites</title>
   <meta name="description" content="Preview four professional website templates built for welding and fabrication shops.">
   <meta property="og:title" content="Template Demo — DDFAB Dealer Websites">
@@ -13,6 +13,7 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://www.ddfab-websites.com/images/og-image.png">
+  <meta name="theme-color" content="#000000">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
@@ -26,6 +27,7 @@
       --text: #FFFFFF;
       --text-muted: #CCCCCC;
       --text-dim: #AAAAAA;
+      --chrome-h: auto;
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { height: 100%; }
@@ -38,46 +40,53 @@
       overflow: hidden;
     }
 
-    .topbar {
+    .demo-chrome {
       flex-shrink: 0;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--border);
+      z-index: 10;
       background: var(--bg);
     }
+
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
     .topbar-logos {
-      display: flex; align-items: center; gap: 20px;
-      flex-wrap: wrap;
+      display: flex; align-items: center; gap: 14px;
+      min-width: 0;
     }
     .topbar-brand {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; flex-shrink: 0;
       text-decoration: none;
     }
-    .topbar-brand img { height: 22px; width: auto; }
-    .topbar-ironhorse { height: 26px; width: auto; display: block; }
+    .topbar-brand img { height: 22px; width: auto; max-width: 140px; object-fit: contain; }
+    .topbar-ironhorse { height: 24px; width: auto; display: block; flex-shrink: 0; }
     .topbar-badge {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      flex-shrink: 0;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.08em; color: var(--ddfab-orange-light);
       background: rgba(255,102,0,0.1); border: 1px solid rgba(255,102,0,0.35);
-      border-radius: 3px; padding: 3px 8px;
+      border-radius: 3px; padding: 4px 8px; white-space: nowrap;
     }
 
+    /* Desktop tab strip */
     .switcher {
-      flex-shrink: 0;
       display: flex; gap: 0;
       border-bottom: 1px solid var(--border);
       background: #0A0A0A;
-      overflow-x: auto;
     }
     .switcher-tab {
       flex: 1; min-width: 0;
-      padding: 14px 20px;
+      padding: 14px 16px;
       background: none; border: none; border-bottom: 3px solid transparent;
       color: #B8B8B8; cursor: pointer;
-      font-family: 'Play', sans-serif; font-size: 14px; font-weight: 700;
+      font-family: inherit; font-size: 13px; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.04em;
-      transition: all 200ms; white-space: nowrap;
+      transition: all 200ms;
       display: flex; flex-direction: column; align-items: center; gap: 2px;
+      text-align: center;
+      -webkit-appearance: none; appearance: none;
     }
     .switcher-tab:hover { color: #ddd; background: rgba(255,255,255,0.04); }
     .switcher-tab.active {
@@ -85,23 +94,60 @@
       border-bottom-color: var(--ddfab-orange);
       background: rgba(255, 102, 0, 0.12);
     }
+    .switcher-tab-title { line-height: 1.25; }
     .switcher-tab-sub {
       font-size: 11px; font-weight: 400; text-transform: none;
-      letter-spacing: 0; color: #9E9E9E;
+      letter-spacing: 0; color: #9E9E9E; line-height: 1.3;
     }
     .switcher-tab:hover .switcher-tab-sub { color: #bbb; }
     .switcher-tab.active .switcher-tab-sub { color: #ccc; }
     .switcher-tab .pop-badge {
       display: inline-block; font-size: 9px; font-weight: 700;
       color: #fff; border-radius: 2px;
-      padding: 1px 5px; margin-left: 6px; vertical-align: middle;
+      padding: 1px 5px; margin-left: 4px; vertical-align: middle;
       text-transform: uppercase; letter-spacing: 0.06em;
       background: linear-gradient(135deg, var(--ddfab-orange), var(--ddfab-orange-light));
+    }
+
+    /* Mobile picker — hidden on desktop */
+    .switcher-mobile {
+      display: none;
+      padding: 12px 16px 14px;
+      border-bottom: 1px solid var(--border);
+      background: #0A0A0A;
+    }
+    .switcher-mobile-label {
+      display: block;
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--ddfab-orange-light);
+      margin-bottom: 8px;
+    }
+    .switcher-select {
+      width: 100%;
+      font-family: inherit;
+      font-size: 16px; font-weight: 700;
+      color: #fff;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 44px 14px 16px;
+      cursor: pointer;
+      -webkit-appearance: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23FF8533' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+    .switcher-select:focus {
+      outline: none;
+      border-color: var(--ddfab-orange);
+      box-shadow: 0 0 0 3px rgba(255,102,0,0.2);
     }
 
     .preview-area {
       flex: 1; position: relative;
       overflow: hidden; background: #111;
+      min-height: 0;
     }
     .preview-frame {
       display: none;
@@ -110,58 +156,80 @@
     }
     .preview-frame.active { display: block; }
 
-
-    @media (max-width: 600px) {
-      .topbar { padding: 12px 16px; }
+    @media (max-width: 768px) {
+      .topbar {
+        padding: 10px 14px;
+        padding-top: max(10px, env(safe-area-inset-top));
+      }
+      .topbar-brand img { height: 18px; max-width: 110px; }
+      .topbar-ironhorse { height: 20px; }
       .topbar-badge { display: none; }
-      .switcher-tab { padding: 12px 12px; font-size: 12px; }
-      .switcher-tab-sub { display: none; }
+
+      .switcher { display: none; }
+      .switcher-mobile { display: block; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .switcher-tab { padding: 12px 10px; font-size: 12px; }
+      .switcher-tab-sub { font-size: 10px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="topbar">
-    <div class="topbar-logos">
-      <a href="/" class="topbar-brand">
-        <img src="images/Double Diamond Fabrication Logo.png" alt="Double Diamond Fabrication">
-      </a>
-      <img src="images/Logo.png" alt="Iron Horse" class="topbar-ironhorse">
+  <header class="demo-chrome">
+    <div class="topbar">
+      <div class="topbar-logos">
+        <a href="/" class="topbar-brand">
+          <img src="images/Double Diamond Fabrication Logo.png" alt="Double Diamond Fabrication">
+        </a>
+        <img src="images/Logo.png" alt="Iron Horse" class="topbar-ironhorse">
+      </div>
+      <span class="topbar-badge">Template Preview</span>
     </div>
-    <span class="topbar-badge">Template Preview</span>
-  </div>
 
-  <div class="switcher" role="tablist">
-    <button class="switcher-tab active" role="tab" aria-selected="true" data-tmpl="a">
-      Template A &mdash; Dark &amp; Sleek
-      <span class="switcher-tab-sub">Bold dark backgrounds, modern edge</span>
-    </button>
-    <button class="switcher-tab" role="tab" aria-selected="false" data-tmpl="b">
-      Template B &mdash; Clean Industrial
-      <span class="switcher-tab-sub">Light backgrounds, editorial layout</span>
-    </button>
-    <button class="switcher-tab" role="tab" aria-selected="false" data-tmpl="c">
-      Template C &mdash; Workshop Grit <span class="pop-badge">Popular</span>
-      <span class="switcher-tab-sub">Textured darks, bold typography</span>
-    </button>
-    <button class="switcher-tab" role="tab" aria-selected="false" data-tmpl="d">
-      Template D &mdash; Ironwork <span class="pop-badge">New</span>
-      <span class="switcher-tab-sub">Navy slab-serif, masonry gallery</span>
-    </button>
-  </div>
+    <div class="switcher" role="tablist" aria-label="Website templates">
+      <button type="button" class="switcher-tab active" role="tab" aria-selected="true" data-tmpl="a">
+        <span class="switcher-tab-title">A &mdash; Dark &amp; Sleek</span>
+        <span class="switcher-tab-sub">Bold dark backgrounds, modern edge</span>
+      </button>
+      <button type="button" class="switcher-tab" role="tab" aria-selected="false" data-tmpl="b">
+        <span class="switcher-tab-title">B &mdash; Clean Industrial</span>
+        <span class="switcher-tab-sub">Light backgrounds, editorial layout</span>
+      </button>
+      <button type="button" class="switcher-tab" role="tab" aria-selected="false" data-tmpl="c">
+        <span class="switcher-tab-title">C &mdash; Workshop Grit <span class="pop-badge">Popular</span></span>
+        <span class="switcher-tab-sub">Textured darks, bold typography</span>
+      </button>
+      <button type="button" class="switcher-tab" role="tab" aria-selected="false" data-tmpl="d">
+        <span class="switcher-tab-title">D &mdash; Ironwork <span class="pop-badge">New</span></span>
+        <span class="switcher-tab-sub">Navy slab-serif, masonry gallery</span>
+      </button>
+    </div>
 
-  <div class="preview-area">
+    <div class="switcher-mobile">
+      <label class="switcher-mobile-label" for="tmpl-select">Pick a design</label>
+      <select id="tmpl-select" class="switcher-select" aria-label="Choose website template">
+        <option value="a" selected>A — Dark &amp; Sleek</option>
+        <option value="b">B — Clean Industrial</option>
+        <option value="c">C — Workshop Grit</option>
+        <option value="d">D — Ironwork</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="preview-area">
     <iframe class="preview-frame active" data-tmpl="a" src="template-a.html" title="Dark & Sleek template"></iframe>
     <iframe class="preview-frame" data-tmpl="b" src="about:blank" title="Clean Industrial template"></iframe>
     <iframe class="preview-frame" data-tmpl="c" src="about:blank" title="Workshop Grit template"></iframe>
     <iframe class="preview-frame" data-tmpl="d" src="about:blank" title="Ironwork template"></iframe>
-  </div>
-
+  </main>
 
   <script>
     (function() {
       var tabs = document.querySelectorAll('.switcher-tab');
       var frames = document.querySelectorAll('.preview-frame');
+      var select = document.getElementById('tmpl-select');
       var urls = {
         a: 'template-a.html',
         b: 'template-b.html',
@@ -169,25 +237,34 @@
         d: 'template-d.html'
       };
 
+      function activateTemplate(id) {
+        tabs.forEach(function(t) {
+          var on = t.getAttribute('data-tmpl') === id;
+          t.classList.toggle('active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        if (select) select.value = id;
+
+        frames.forEach(function(f) {
+          var match = f.getAttribute('data-tmpl') === id;
+          f.classList.toggle('active', match);
+          if (match && (f.src === 'about:blank' || f.src.endsWith('about:blank'))) {
+            f.src = urls[id];
+          }
+        });
+      }
+
       tabs.forEach(function(tab) {
         tab.addEventListener('click', function() {
-          var id = tab.getAttribute('data-tmpl');
-          tabs.forEach(function(t) {
-            t.classList.remove('active');
-            t.setAttribute('aria-selected', 'false');
-          });
-          tab.classList.add('active');
-          tab.setAttribute('aria-selected', 'true');
-
-          frames.forEach(function(f) {
-            f.classList.remove('active');
-            if (f.getAttribute('data-tmpl') === id) {
-              f.classList.add('active');
-              if (f.src === 'about:blank') f.src = urls[id];
-            }
-          });
+          activateTemplate(tab.getAttribute('data-tmpl'));
         });
       });
+
+      if (select) {
+        select.addEventListener('change', function() {
+          activateTemplate(select.value);
+        });
+      }
     })();
   </script>
 </body>
