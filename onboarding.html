@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Your Dealer Website — DDFAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #B5451B; --accent-hover: #D0562A;
+      --bg: #111; --bg-dark: #0A0A0A; --bg-card: #1A1A1A;
+      --border: #2A2A2A; --text: #fff; --text-muted: #AAA; --text-dim: #666;
+      --radius: 4px;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* Header */
+    .form-header { background: var(--bg-dark); border-bottom: 1px solid var(--border); padding: 0 24px; }
+    .form-header-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font-size: 16px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+    .brand span { color: var(--text-muted); font-weight: 400; }
+
+    /* Container */
+    .form-container { max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    /* Progress */
+    .progress-bar { display: flex; gap: 0; margin-bottom: 48px; }
+    .progress-step {
+      flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .progress-step::before {
+      content: ''; position: absolute; top: 16px; left: calc(50% + 16px);
+      right: calc(-50% + 16px); height: 2px; background: var(--border); z-index: 0;
+    }
+    .progress-step:last-child::before { display: none; }
+    .progress-step.active::before, .progress-step.done::before { background: var(--accent); }
+    .step-dot {
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--text-muted); background: var(--bg-dark); position: relative; z-index: 1;
+      transition: all 200ms;
+    }
+    .progress-step.active .step-dot { border-color: var(--accent); color: var(--accent); }
+    .progress-step.done .step-dot { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .step-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); text-align: center; display: none; }
+    .progress-step.active .step-label { color: var(--accent); display: block; }
+
+    /* Form Steps */
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+    .step-title { font-size: 28px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .step-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 40px; }
+
+    /* Form Elements */
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px; }
+    .form-group label .required { color: var(--accent); margin-left: 2px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; background: var(--bg-card); border: 1px solid var(--border);
+      color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px;
+      padding: 13px 16px; border-radius: var(--radius); transition: border-color 200ms;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--accent); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-dim); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-grid-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; }
+    .form-hint { font-size: 12px; color: var(--text-dim); margin-top: 6px; }
+
+    /* Domain question */
+    .domain-choice { display: flex; gap: 12px; flex-wrap: wrap; }
+    .domain-opt {
+      flex: 1; min-width: 160px; display: flex; align-items: center; gap: 10px;
+      padding: 13px 16px; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); cursor: pointer; transition: all 200ms; font-size: 14px;
+    }
+    .domain-opt:hover { border-color: #444; }
+    .domain-opt input[type="radio"] { width: auto; flex: none; padding: 0; margin: 0; accent-color: var(--accent); }
+    .domain-opt:has(input:checked) { border-color: var(--accent); background: rgba(181,69,27,0.05); }
+    .domain-live-check { display: flex; align-items: center; gap: 10px; margin-top: 14px; cursor: pointer; font-size: 14px; }
+    .domain-live-check input[type="checkbox"] { display: none; }
+    .domain-live-check .check-box {
+      width: 18px; height: 18px; border: 2px solid var(--border); border-radius: 2px;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 200ms;
+    }
+    .domain-live-check input:checked + .check-box { background: var(--accent); border-color: var(--accent); }
+    .domain-live-check input:checked + .check-box::after { content: '✓'; font-size: 11px; color: #fff; font-weight: 700; }
+    .domain-live-label { color: var(--text-muted); }
+
+    /* Upload */
+    .upload-area {
+      border: 2px dashed var(--border); border-radius: var(--radius);
+      padding: 40px 24px; text-align: center; cursor: pointer;
+      transition: border-color 200ms, background 200ms; position: relative;
+    }
+    .upload-area:hover, .upload-area.dragover { border-color: var(--accent); background: rgba(181,69,27,0.05); }
+    .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .upload-icon { font-size: 40px; margin-bottom: 12px; }
+    .upload-area p { font-size: 15px; color: var(--text-muted); margin-bottom: 4px; }
+    .upload-area small { font-size: 12px; color: var(--text-dim); }
+    .logo-preview { margin-top: 16px; display: flex; align-items: center; gap: 16px; }
+    .logo-preview img { height: 60px; width: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+
+    /* Services checkboxes */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px;
+    }
+    .service-check {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); cursor: pointer; transition: all 200ms;
+    }
+    .service-check:hover { border-color: #444; }
+    .service-check input[type="checkbox"] { display: none; }
+    .check-box {
+      width: 18px; height: 18px; border: 2px solid var(--border); border-radius: 2px;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      transition: all 200ms;
+    }
+    .service-check input:checked + .check-box { background: var(--accent); border-color: var(--accent); }
+    .service-check input:checked + .check-box::after { content: '✓'; font-size: 11px; color: #fff; font-weight: 700; }
+    .service-label { font-size: 14px; font-weight: 500; }
+    .service-check input:checked ~ .service-label { color: #fff; }
+
+    /* Gallery uploader. Tiles are injected via JS innerHTML. */
+    .gallery-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px; margin-top: 20px;
+    }
+    .gallery-item-card {
+      position: relative; display: flex; flex-direction: column; overflow: hidden;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .gallery-thumb { width: 100%; height: 120px; object-fit: cover; display: block; }
+    .gallery-item-fields { display: flex; flex-direction: column; gap: 8px; padding: 12px; }
+    .gallery-item-fields select,
+    .gallery-item-fields input {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px;
+      padding: 8px 10px; border-radius: var(--radius);
+    }
+    .gallery-remove {
+      position: absolute; top: 8px; right: 8px;
+      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.6); border: none; color: #fff; cursor: pointer;
+      font-size: 14px; line-height: 1; border-radius: 50%; transition: background 200ms;
+    }
+    .gallery-remove:hover { background: #ff4444; }
+
+    /* Template cards */
+    .template-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .template-card {
+      border: 2px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer;
+      transition: all 200ms; position: relative;
+    }
+    .template-card:hover { border-color: #555; }
+    .template-card.selected { border-color: var(--accent); }
+    .template-card input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+    .template-info { padding: 14px 16px; }
+    .template-name { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .template-desc { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .template-selected-badge {
+      position: absolute; top: 8px; right: 8px;
+      background: var(--accent); font-size: 10px; font-weight: 700;
+      text-transform: uppercase; color: #fff; padding: 3px 8px; border-radius: 2px;
+      display: none;
+    }
+    .template-card.selected .template-selected-badge { display: block; }
+
+    /* Live template preview */
+    .template-preview { margin-top: 28px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--bg-card); }
+    .template-preview-bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg-dark); border-bottom: 1px solid var(--border); }
+    .template-preview-dots { display: flex; gap: 6px; flex-shrink: 0; }
+    .template-preview-dots i { width: 11px; height: 11px; border-radius: 50%; background: #444; }
+    .template-preview-dots i:nth-child(1) { background: #ff5f56; }
+    .template-preview-dots i:nth-child(2) { background: #ffbd2e; }
+    .template-preview-dots i:nth-child(3) { background: #27c93f; }
+    .template-preview-url { flex: 1; text-align: center; font-size: 12px; color: var(--text-muted); background: var(--bg); border-radius: 4px; padding: 5px 12px; }
+    .template-preview-viewport { position: relative; width: 100%; height: 460px; overflow: hidden; background: #111; }
+    #template-preview-frame { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: top left; }
+    .template-view-link-wrap { margin-top: 16px; text-align: center; }
+    .template-view-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--accent); transition: gap 150ms;
+    }
+    .template-view-link:hover { gap: 10px; }
+
+    /* Review */
+    .review-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+    .review-section h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+    .review-edit { font-size: 12px; color: var(--accent); cursor: pointer; font-weight: 600; }
+    .review-row { display: flex; gap: 12px; margin-bottom: 10px; font-size: 14px; }
+    .review-label { color: var(--text-muted); min-width: 120px; flex-shrink: 0; }
+    .review-value { color: var(--text); }
+    .review-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .review-chip {
+      font-size: 12px; font-weight: 600; background: rgba(181,69,27,0.15);
+      border: 1px solid rgba(181,69,27,0.3); color: var(--accent);
+      padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+
+    /* Buttons */
+    .form-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em; border-radius: var(--radius);
+      border: 2px solid transparent; cursor: pointer; transition: all 250ms;
+    }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text-muted); border-color: var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: #555; }
+    .btn-lg { padding: 16px 40px; font-size: 15px; }
+
+    /* Success */
+    .success-screen { text-align: center; padding: 80px 24px; }
+    .success-icon { font-size: 64px; margin-bottom: 24px; }
+    .success-screen h2 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 16px; }
+    .success-screen p { font-size: 17px; color: var(--text-muted); max-width: 500px; margin: 0 auto 32px; line-height: 1.7; }
+
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid-3 { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .template-cards { grid-template-columns: 1fr; }
+      .step-label { display: none !important; }
+      .btn-lg { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="form-header">
+    <div class="form-header-inner">
+      <div class="brand">DDFAB <span>Dealer Portal</span></div>
+      <a href="/" style="font-size:13px;color:var(--text-muted);">← Back to overview</a>
+    </div>
+  </header>
+
+  <!-- Success screen (shown when ?submitted=true) -->
+  <div class="form-container" id="success-container" style="display:none">
+    <div class="success-screen">
+      <div class="success-icon">🎉</div>
+      <h2>Submission Received!</h2>
+      <p>
+        Thanks for submitting your dealer info. The DDFAB team will review everything
+        and reach out to get your website built.
+      </p>
+      <p style="font-size:14px;color:var(--text-muted);">Questions? Email <a href="mailto:jerry@ddfab.co" style="color:var(--accent);">jerry@ddfab.co</a></p>
+    </div>
+  </div>
+
+  <!-- Onboarding form -->
+  <div class="form-container" id="form-container">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar">
+      <div class="progress-step active" data-step="1"><div class="step-dot">1</div><span class="step-label">Company Info</span></div>
+      <div class="progress-step" data-step="2"><div class="step-dot">2</div><span class="step-label">Services</span></div>
+      <div class="progress-step" data-step="3"><div class="step-dot">3</div><span class="step-label">Gallery</span></div>
+      <div class="progress-step" data-step="4"><div class="step-dot">4</div><span class="step-label">Contact</span></div>
+      <div class="progress-step" data-step="5"><div class="step-dot">5</div><span class="step-label">Template</span></div>
+      <div class="progress-step" data-step="6"><div class="step-dot">6</div><span class="step-label">Review</span></div>
+    </div>
+
+    <form id="dealer-form" action="#" method="POST" enctype="multipart/form-data">
+      <!-- STEP 1: Company Info -->
+      <div class="form-step active" data-step="1">
+        <h2 class="step-title">Your Shop</h2>
+        <p class="step-desc">Tell us about your business. This becomes the foundation of your website.</p>
+
+        <div class="form-group">
+          <label>Company Name <span class="required">*</span></label>
+          <input type="text" name="companyName" placeholder="e.g., Iron Ridge Welding & Fabrication" required />
+        </div>
+
+        <div class="form-group">
+          <label>Tagline</label>
+          <input type="text" name="tagline" placeholder="e.g., Built Tough. Built Right. Built Here." />
+          <p class="form-hint">A short phrase that captures your shop's spirit.</p>
+        </div>
+
+        <div class="form-group">
+          <label>Logo <span class="required">*</span></label>
+          <div class="upload-area" id="logo-upload-area">
+            <input type="file" name="logo" accept="image/png,image/jpeg,image/svg+xml,image/webp" id="logo-input" />
+            <div class="upload-icon">🏷️</div>
+            <p>Click to upload your logo</p>
+            <small>PNG, JPG, or SVG · Max 5MB · Transparent PNG preferred</small>
+          </div>
+          <div class="logo-preview" id="logo-preview" style="display:none">
+            <img id="logo-preview-img" src="" alt="Logo preview" />
+            <div>
+              <strong id="logo-preview-name" style="font-size:14px;"></strong>
+              <button type="button" id="logo-remove" style="display:block;background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;margin-top:4px;padding:0;">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>About Your Shop <span class="required">*</span></label>
+          <textarea name="about" placeholder="Tell customers about your shop, your experience, and what makes you stand out. 2-4 sentences works great." required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <div></div>
+          <button type="button" class="btn btn-primary" data-next="2">
+            Next: Services
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Services -->
+      <div class="form-step" data-step="2">
+        <h2 class="step-title">Your Services</h2>
+        <p class="step-desc">Select every service you offer. These will appear on your website.</p>
+
+        <div class="services-grid">
+          <label class="service-check"><input type="checkbox" name="services" value="MIG Welding" /><div class="check-box"></div><span class="service-label">MIG Welding</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="TIG Welding" /><div class="check-box"></div><span class="service-label">TIG Welding</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Stick Welding" /><div class="check-box"></div><span class="service-label">Stick Welding</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Custom Fabrication" /><div class="check-box"></div><span class="service-label">Custom Fabrication</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Trailer Repair" /><div class="check-box"></div><span class="service-label">Trailer Repair</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Trailer Building" /><div class="check-box"></div><span class="service-label">Trailer Building</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Mobile Welding" /><div class="check-box"></div><span class="service-label">Mobile Welding</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Structural Steel" /><div class="check-box"></div><span class="service-label">Structural Steel</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Ornamental / Decorative" /><div class="check-box"></div><span class="service-label">Ornamental / Decorative</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Aluminum Welding" /><div class="check-box"></div><span class="service-label">Aluminum Welding</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Stainless Steel" /><div class="check-box"></div><span class="service-label">Stainless Steel</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Pipe Welding" /><div class="check-box"></div><span class="service-label">Pipe Welding</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Equipment Repair" /><div class="check-box"></div><span class="service-label">Equipment Repair</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Sandblasting" /><div class="check-box"></div><span class="service-label">Sandblasting</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Powder Coating" /><div class="check-box"></div><span class="service-label">Powder Coating</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="Plasma Cutting" /><div class="check-box"></div><span class="service-label">Plasma Cutting</span></label>
+          <label class="service-check"><input type="checkbox" name="services" value="CNC Services" /><div class="check-box"></div><span class="service-label">CNC Services</span></label>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-prev="1">← Back</button>
+          <button type="button" class="btn btn-primary" data-next="3">
+            Next: Gallery
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Gallery -->
+      <div class="form-step" data-step="3">
+        <h2 class="step-title">Your Work</h2>
+        <p class="step-desc">Upload photos of your projects. Tag each one so they can be filtered by service type.</p>
+
+        <div class="form-group">
+          <label>Project Photos</label>
+          <div class="upload-area" id="gallery-upload-area">
+            <input type="file" name="galleryFiles" accept="image/*" multiple id="gallery-input" />
+            <div class="upload-icon">📷</div>
+            <p>Click to upload project photos</p>
+            <small>Up to 15 images · JPG, PNG, WebP · Max 10MB each</small>
+          </div>
+        </div>
+
+        <div class="gallery-items" id="gallery-items"></div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-prev="2">← Back</button>
+          <button type="button" class="btn btn-primary" data-next="4">
+            Next: Contact Info
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Contact Info -->
+      <div class="form-step" data-step="4">
+        <h2 class="step-title">Contact Info</h2>
+        <p class="step-desc">This info appears on your website and lets customers reach you directly.</p>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Phone <span class="required">*</span></label>
+            <input type="tel" name="phone" placeholder="(555) 000-0000" required />
+          </div>
+          <div class="form-group">
+            <label>Email <span class="required">*</span></label>
+            <input type="email" name="email" placeholder="you@yourshop.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Street Address <span class="required">*</span></label>
+          <input type="text" name="street" placeholder="1234 Ranch Road" required />
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label>City <span class="required">*</span></label>
+            <input type="text" name="city" placeholder="Dripping Springs" required />
+          </div>
+          <div class="form-group">
+            <label>State <span class="required">*</span></label>
+            <input type="text" name="state" placeholder="TX" maxlength="2" required />
+          </div>
+          <div class="form-group">
+            <label>ZIP <span class="required">*</span></label>
+            <input type="text" name="zip" placeholder="78620" required />
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Business Hours</label>
+            <input type="text" name="hours" placeholder="Mon–Fri 7AM–5PM, Sat by appt" />
+          </div>
+          <div class="form-group">
+            <label>Service Area</label>
+            <input type="text" name="serviceArea" placeholder="Greater Austin area" />
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Facebook URL</label>
+            <input type="url" name="facebook" placeholder="https://facebook.com/yourshop" />
+          </div>
+          <div class="form-group">
+            <label>Instagram URL</label>
+            <input type="url" name="instagram" placeholder="https://instagram.com/yourshop" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Do you already have a domain?</label>
+          <div class="domain-choice">
+            <label class="domain-opt">
+              <input type="radio" name="hasDomain" value="no" checked />
+              <span>No — I'll need one</span>
+            </label>
+            <label class="domain-opt">
+              <input type="radio" name="hasDomain" value="yes" />
+              <span>Yes, I already own one</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" id="domain-fields" style="display:none">
+          <label>Your Domain</label>
+          <input type="text" name="domain" placeholder="e.g., yourshop.com" />
+          <p class="form-hint">Just the domain — no https://</p>
+          <label class="domain-live-check">
+            <input type="checkbox" name="domainHasLiveSite" value="yes" />
+            <span class="check-box"></span>
+            <span class="domain-live-label">I currently have a live website at this domain (we'll plan the switch-over)</span>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-prev="3">← Back</button>
+          <button type="button" class="btn btn-primary" data-next="5">
+            Next: Choose Template
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Template -->
+      <div class="form-step" data-step="5">
+        <h2 class="step-title">Pick Your Style</h2>
+        <p class="step-desc">Choose the design template for your website. Click any style to preview it live below.</p>
+
+        <div class="template-cards">
+          <label class="template-card selected" data-template="dark-sleek">
+            <input type="radio" name="template" value="dark-sleek" checked />
+            <div class="template-info">
+              <div class="template-name">Dark & Sleek</div>
+              <div class="template-desc">Bold dark backgrounds, modern edge.</div>
+            </div>
+            <div class="template-selected-badge">Selected</div>
+          </label>
+          <label class="template-card" data-template="clean-industrial">
+            <input type="radio" name="template" value="clean-industrial" />
+            <div class="template-info">
+              <div class="template-name">Clean Industrial</div>
+              <div class="template-desc">Light backgrounds, editorial layout.</div>
+            </div>
+            <div class="template-selected-badge">Selected</div>
+          </label>
+          <label class="template-card" data-template="workshop-grit">
+            <input type="radio" name="template" value="workshop-grit" />
+            <div class="template-info">
+              <div class="template-name">Workshop Grit</div>
+              <div class="template-desc">Textured darks, bold condensed type.</div>
+            </div>
+            <div class="template-selected-badge">Selected</div>
+          </label>
+          <label class="template-card" data-template="ironwork">
+            <input type="radio" name="template" value="ironwork" />
+            <div class="template-info">
+              <div class="template-name">Ironwork</div>
+              <div class="template-desc">Navy slab-serif, masonry gallery.</div>
+            </div>
+            <div class="template-selected-badge">Selected</div>
+          </label>
+        </div>
+
+        <div class="template-preview">
+          <div class="template-preview-bar">
+            <span class="template-preview-dots"><i></i><i></i><i></i></span>
+            <span class="template-preview-url">yourshop.com</span>
+          </div>
+          <div class="template-preview-viewport">
+            <iframe id="template-preview-frame" title="Live template preview" src="/dealer-demo/template-a" loading="lazy" scrolling="no"></iframe>
+          </div>
+        </div>
+        <div class="template-view-link-wrap">
+          <a id="template-view-link" class="template-view-link" href="/dealer-demo/template-a" target="_blank" rel="noopener">View this template full-size ↗</a>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-prev="4">← Back</button>
+          <button type="button" class="btn btn-primary" data-next="6">
+            Review & Submit
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 6: Review -->
+      <div class="form-step" data-step="6">
+        <h2 class="step-title">Review & Submit</h2>
+        <p class="step-desc">Double-check everything before we build your site.</p>
+
+        <div class="review-section">
+          <h3>Company Info <span class="review-edit" data-goto="1">Edit</span></h3>
+          <div id="review-company">
+            <p style="color:var(--text-muted);font-size:14px;">Fill in Company Info to see a summary here.</p>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <h3>Services <span class="review-edit" data-goto="2">Edit</span></h3>
+          <div id="review-services">
+            <p style="color:var(--text-muted);font-size:14px;">Select services to see them here.</p>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <h3>Gallery <span class="review-edit" data-goto="3">Edit</span></h3>
+          <div id="review-gallery">
+            <p style="color:var(--text-muted);font-size:14px;">Upload gallery images to see a count here.</p>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <h3>Contact <span class="review-edit" data-goto="4">Edit</span></h3>
+          <div id="review-contact">
+            <p style="color:var(--text-muted);font-size:14px;">Fill in contact info to see a summary here.</p>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <h3>Template <span class="review-edit" data-goto="5">Edit</span></h3>
+          <div id="review-template">
+            <p style="color:var(--text-muted);font-size:14px;">Choose a template to see it here.</p>
+          </div>
+        </div>
+
+        <p id="submit-error" role="alert" style="display:none;background:rgba(255,68,68,0.1);border:1px solid #ff4444;color:#ff8888;font-size:14px;padding:14px 16px;border-radius:var(--radius);margin-bottom:20px;"></p>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-prev="5">← Back</button>
+          <button type="submit" class="btn btn-primary btn-lg">
+            Submit for Review
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // ── Supabase config (public by design; Row Level Security protects data) ──
+    const SUPABASE_URL = 'https://rhrgedhbkfoibflsygbc.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJocmdlZGhia2ZvaWJmbHN5Z2JjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5OTk2ODEsImV4cCI6MjA5NTU3NTY4MX0.4Ch5vMo6grvhRWpL_RJ-AEBCMekbJxstXyoo_WRVMZ4';
+    const BUCKET = 'submissions';
+
+    // ── Show success screen if we just submitted ──────────────────────────
+    if (new URLSearchParams(location.search).get('submitted') === 'true') {
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('success-container').style.display = 'block';
+    }
+
+    // ── Submit-to-Supabase helpers (inlined, no backend required) ─────────
+    function slugify(name) {
+      return name
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
+
+    const MAX_EDGE = 3840;
+    const JPEG_QUALITY = 0.92;
+    const PASSTHROUGH_BYTES = 4 * 1024 * 1024;
+
+    async function optimizeImage(file, opts = {}) {
+      if (!file.type.startsWith('image/') || file.type === 'image/svg+xml') return file;
+
+      let bitmap;
+      try {
+        bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+      } catch {
+        return file;
+      }
+
+      const longEdge = Math.max(bitmap.width, bitmap.height);
+      const withinDims = longEdge <= MAX_EDGE;
+      if (withinDims && file.size <= PASSTHROUGH_BYTES) {
+        bitmap.close();
+        return file;
+      }
+
+      const scale = withinDims ? 1 : MAX_EDGE / longEdge;
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(bitmap.width * scale);
+      canvas.height = Math.round(bitmap.height * scale);
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        bitmap.close();
+        return file;
+      }
+      ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      bitmap.close();
+
+      const asPng = opts.preserveAlpha === true && file.type === 'image/png';
+      const outType = asPng ? 'image/png' : 'image/jpeg';
+      const blob = await new Promise((resolve) =>
+        canvas.toBlob(resolve, outType, asPng ? undefined : JPEG_QUALITY)
+      );
+      if (!blob || blob.size >= file.size) return file;
+
+      const ext = asPng ? 'png' : 'jpg';
+      const base = file.name.replace(/\.[^.]+$/, '') || 'image';
+      return new File([blob], `${base}.${ext}`, { type: outType });
+    }
+
+    function authHeaders() {
+      return {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      };
+    }
+
+    async function uploadFile(folder, name, file) {
+      const path = `${folder}/${name}`;
+      const res = await fetch(
+        `${SUPABASE_URL}/storage/v1/object/${BUCKET}/${encodeURI(path)}`,
+        {
+          method: 'POST',
+          headers: {
+            ...authHeaders(),
+            'Content-Type': file.type || 'application/octet-stream',
+          },
+          body: file,
+        }
+      );
+      if (!res.ok) {
+        const detail = await res.text().catch(() => '');
+        throw new Error(`Upload failed for ${name} (${res.status}). ${detail}`);
+      }
+      return path;
+    }
+
+    async function submitDealerForm(form) {
+      const fd = new FormData(form);
+      const get = (k) => ((fd.get(k)) ?? '').trim();
+
+      const companyName = get('companyName');
+      const email = get('email');
+      const phone = get('phone');
+      const street = get('street');
+      const city = get('city');
+      const state = get('state');
+      const zip = get('zip');
+
+      if (!companyName || !email || !phone || !street || !city || !state || !zip) {
+        return { ok: false, error: 'Please fill in all required fields before submitting.' };
+      }
+
+      const folder = `${slugify(companyName) || 'dealer'}-${Date.now().toString(36)}`;
+
+      try {
+        let logoPath = '';
+        const logo = fd.get('logo');
+        if (logo && logo.size > 0) {
+          const optimized = await optimizeImage(logo, { preserveAlpha: true });
+          const ext = optimized.name.split('.').pop()?.toLowerCase() || 'png';
+          logoPath = await uploadFile(folder, `logo.${ext}`, optimized);
+        }
+
+        const galleryFiles = fd.getAll('galleryFiles');
+        const gallery = [];
+        for (let i = 0; i < galleryFiles.length; i++) {
+          const f = galleryFiles[i];
+          if (!f || f.size === 0) continue;
+          const optimized = await optimizeImage(f);
+          const ext = optimized.name.split('.').pop()?.toLowerCase() || 'jpg';
+          const path = await uploadFile(folder, `gallery/${String(i + 1).padStart(2, '0')}.${ext}`, optimized);
+          gallery.push({
+            path,
+            service: get(`galleryService_${i}`),
+            alt: get(`galleryAlt_${i}`),
+          });
+        }
+
+        const row = {
+          folder,
+          company_name: companyName,
+          tagline: get('tagline'),
+          about: get('about'),
+          email,
+          phone,
+          street,
+          city,
+          state,
+          zip,
+          hours: get('hours'),
+          service_area: get('serviceArea'),
+          facebook: get('facebook'),
+          instagram: get('instagram'),
+          has_domain: get('hasDomain') === 'yes',
+          domain: get('domain'),
+          domain_has_live_site: get('domainHasLiveSite') === 'yes',
+          template: get('template') || 'dark-sleek',
+          services: fd.getAll('services'),
+          gallery,
+          logo_path: logoPath,
+        };
+
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/submissions`, {
+          method: 'POST',
+          headers: {
+            ...authHeaders(),
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify(row),
+        });
+
+        if (!res.ok) {
+          const detail = await res.text().catch(() => '');
+          throw new Error(`Could not save submission (${res.status}). ${detail}`);
+        }
+
+        return { ok: true };
+      } catch (err) {
+        return { ok: false, error: err instanceof Error ? err.message : 'Submission failed.' };
+      }
+    }
+
+    // ── Step navigation ──────────────────────────────────────────────────
+    let currentStep = 1;
+    const totalSteps = 6;
+
+    function goToStep(n) {
+      document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.progress-step').forEach((el, i) => {
+        el.classList.toggle('active', i + 1 === n);
+        el.classList.toggle('done', i + 1 < n);
+      });
+      const target = document.querySelector(`.form-step[data-step="${n}"]`);
+      if (target) target.classList.add('active');
+      currentStep = n;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (n === 6) updateReview();
+    }
+
+    document.querySelectorAll('[data-next]').forEach(btn => {
+      btn.addEventListener('click', () => goToStep(parseInt(btn.dataset.next)));
+    });
+    document.querySelectorAll('[data-prev]').forEach(btn => {
+      btn.addEventListener('click', () => goToStep(parseInt(btn.dataset.prev)));
+    });
+    document.querySelectorAll('[data-goto]').forEach(el => {
+      el.addEventListener('click', () => goToStep(parseInt(el.dataset.goto)));
+    });
+
+    // ── Logo upload preview ───────────────────────────────────────────────
+    const logoInput = document.getElementById('logo-input');
+    const logoPreview = document.getElementById('logo-preview');
+    const logoPreviewImg = document.getElementById('logo-preview-img');
+    const logoPreviewName = document.getElementById('logo-preview-name');
+    const logoRemove = document.getElementById('logo-remove');
+    const logoUploadArea = document.getElementById('logo-upload-area');
+
+    logoInput?.addEventListener('change', () => {
+      const file = logoInput.files?.[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      logoPreviewImg.src = url;
+      logoPreviewName.textContent = file.name;
+      logoPreview.style.display = 'flex';
+      logoUploadArea.style.display = 'none';
+    });
+
+    logoRemove?.addEventListener('click', () => {
+      logoInput.value = '';
+      logoPreview.style.display = 'none';
+      logoUploadArea.style.display = 'block';
+    });
+
+    // ── Gallery upload ────────────────────────────────────────────────────
+    const galleryInput = document.getElementById('gallery-input');
+    const galleryItems = document.getElementById('gallery-items');
+
+    function getSelectedServices() {
+      return Array.from(document.querySelectorAll('input[name="services"]:checked'))
+        .map(el => el.value);
+    }
+
+    function addGalleryItem(file, index) {
+      const url = URL.createObjectURL(file);
+      const services = getSelectedServices();
+      const card = document.createElement('div');
+      card.className = 'gallery-item-card';
+      card.innerHTML = `
+        <img class="gallery-thumb" src="${url}" alt="${file.name}" />
+        <button type="button" class="gallery-remove" aria-label="Remove photo">✕</button>
+        <div class="gallery-item-fields">
+          <select name="galleryService_${index}">
+            <option value="">— Tag this photo —</option>
+            ${services.map(s => `<option value="${s}">${s}</option>`).join('')}
+          </select>
+          <input type="text" name="galleryAlt_${index}" placeholder="Short description of image" />
+        </div>
+      `;
+      card.querySelector('.gallery-remove')?.addEventListener('click', () => card.remove());
+      galleryItems.appendChild(card);
+    }
+
+    galleryInput?.addEventListener('change', () => {
+      const files = Array.from(galleryInput.files || []).slice(0, 15);
+      galleryItems.innerHTML = '';
+      files.forEach((file, i) => addGalleryItem(file, i));
+    });
+
+    // ── Template card selection + live preview ────────────────────────────
+    const previewFrame = document.getElementById('template-preview-frame');
+    const previewViewport = document.querySelector('.template-preview-viewport');
+
+    function sizePreview() {
+      if (!previewFrame || !previewViewport) return;
+      const scale = previewViewport.clientWidth / 1440;
+      if (scale <= 0) return;
+      previewFrame.style.transform = `scale(${scale})`;
+      previewViewport.style.height = `${Math.round(900 * scale)}px`;
+    }
+    if (previewViewport) new ResizeObserver(sizePreview).observe(previewViewport);
+
+    const PREVIEW_URLS = {
+      'dark-sleek': '/dealer-demo/template-a',
+      'clean-industrial': '/dealer-demo/template-b',
+      'workshop-grit': '/dealer-demo/template-c',
+      'ironwork': '/dealer-demo/template-d',
+    };
+    const viewLink = document.getElementById('template-view-link');
+
+    document.querySelectorAll('.template-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        const radio = card.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+        const tpl = card.getAttribute('data-template');
+        const url = tpl ? PREVIEW_URLS[tpl] : null;
+        if (previewFrame && url) previewFrame.src = url;
+        if (viewLink && url) viewLink.href = url;
+      });
+    });
+
+    // ── Domain question conditional ───────────────────────────────────────
+    const domainFields = document.getElementById('domain-fields');
+    document.querySelectorAll('input[name="hasDomain"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const hasDomain = document.querySelector('input[name="hasDomain"]:checked')?.value === 'yes';
+        if (domainFields) domainFields.style.display = hasDomain ? 'block' : 'none';
+      });
+    });
+
+    // ── Review summary ────────────────────────────────────────────────────
+    function row(label, value) {
+      return `<div class="review-row"><span class="review-label">${label}</span><span class="review-value">${value || '<em style="color:var(--text-dim)">Not provided</em>'}</span></div>`;
+    }
+
+    function updateReview() {
+      const form = document.getElementById('dealer-form');
+      if (!form) return;
+      const fd = new FormData(form);
+
+      const companyEl = document.getElementById('review-company');
+      if (companyEl) companyEl.innerHTML = `
+        ${row('Name', fd.get('companyName'))}
+        ${row('Tagline', fd.get('tagline'))}
+        ${row('About', (fd.get('about'))?.slice(0, 100) + ((fd.get('about'))?.length > 100 ? '…' : '') || '')}
+      `;
+
+      const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(el => el.value);
+      const servicesEl = document.getElementById('review-services');
+      if (servicesEl) {
+        if (services.length > 0) {
+          servicesEl.innerHTML = `<div class="review-chips">${services.map(s => `<span class="review-chip">${s}</span>`).join('')}</div>`;
+        } else {
+          servicesEl.innerHTML = `<p style="color:var(--text-muted);font-size:14px;">No services selected.</p>`;
+        }
+      }
+
+      const galleryCount = document.querySelectorAll('.gallery-item-card').length;
+      const galleryEl = document.getElementById('review-gallery');
+      if (galleryEl) galleryEl.innerHTML = row('Photos', galleryCount > 0 ? `${galleryCount} image${galleryCount !== 1 ? 's' : ''} uploaded` : 'None uploaded (you can add later)');
+
+      const dHas = fd.get('hasDomain') === 'yes';
+      const dVal = ((fd.get('domain')) || '').trim();
+      const dLive = fd.get('domainHasLiveSite') === 'yes';
+      const domainSummary = dHas ? ((dVal || 'Yes — not specified') + (dLive ? ' · has live site' : '')) : 'Needs a domain';
+      const contactEl = document.getElementById('review-contact');
+      if (contactEl) contactEl.innerHTML = `
+        ${row('Phone', fd.get('phone'))}
+        ${row('Email', fd.get('email'))}
+        ${row('Address', [fd.get('street'), fd.get('city'), fd.get('state'), fd.get('zip')].filter(Boolean).join(', '))}
+        ${row('Hours', fd.get('hours'))}
+        ${row('Service Area', fd.get('serviceArea'))}
+        ${row('Domain', domainSummary)}
+      `;
+
+      const selectedTemplate = document.querySelector('input[name="template"]:checked')?.value || 'dark-sleek';
+      const templateNames = {
+        'dark-sleek': 'Dark & Sleek',
+        'clean-industrial': 'Clean Industrial',
+        'workshop-grit': 'Workshop Grit',
+        'ironwork': 'Ironwork',
+      };
+      const templateEl = document.getElementById('review-template');
+      if (templateEl) templateEl.innerHTML = row('Template', templateNames[selectedTemplate] || selectedTemplate);
+    }
+
+    // ── Submit straight to Supabase ───────────────────────────────────────
+    const dealerForm = document.getElementById('dealer-form');
+    dealerForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = dealerForm.querySelector('button[type="submit"]');
+      const errorEl = document.getElementById('submit-error');
+      if (errorEl) errorEl.style.display = 'none';
+      const originalHTML = submitBtn?.innerHTML ?? '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting…'; }
+
+      const result = await submitDealerForm(dealerForm);
+
+      if (result.ok) {
+        window.location.href = '/onboarding?submitted=true';
+        return;
+      }
+
+      if (errorEl) { errorEl.textContent = result.error; errorEl.style.display = 'block'; }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalHTML; }
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
